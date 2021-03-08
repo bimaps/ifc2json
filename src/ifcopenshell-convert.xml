@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ifc xmlns:xlink="http://www.w3.org/1999/xlink">
+	<header>
+		<file_description>
+			<description>ViewDefinition [CoordinationView_V2.0]</description>
+			<implementation_level>2;1</implementation_level>
+		</file_description>
+		<file_name>
+			<author/>
+			<organization/>
+			<name>0001</name>
+			<time_stamp>2020-06-08T12:43:35</time_stamp>
+			<preprocessor_version>The EXPRESS Data Manager Version 5.02.0100.07 : 28 Aug 2013</preprocessor_version>
+			<originating_system>20200426_1515(x64) - Exporter 20.2.20.31 - Interface utilisateur alternative 20.2.20.31</originating_system>
+			<authorization/>
+		</file_name>
+		<file_schema>
+			<schema_identifiers>IFC2X3</schema_identifiers>
+		</file_schema>
+	</header>
+	<units>
+		<IfcSIUnit UnitType="LENGTHUNIT" Prefix="MILLI" Name="METRE" SI_equivalent="0.001"/>
+		<IfcSIUnit UnitType="AREAUNIT" Name="SQUARE_METRE" SI_equivalent="1"/>
+		<IfcSIUnit UnitType="VOLUMEUNIT" Name="CUBIC_METRE" SI_equivalent="1"/>
+		<IfcConversionBasedUnit UnitType="PLANEANGLEUNIT" Name="DEGREE" SI_equivalent="0.017453292519943299"/>
+		<IfcSIUnit UnitType="MASSUNIT" Prefix="KILO" Name="GRAM" SI_equivalent="1000"/>
+		<IfcSIUnit UnitType="TIMEUNIT" Name="SECOND" SI_equivalent="1"/>
+		<IfcSIUnit UnitType="FREQUENCYUNIT" Name="HERTZ" SI_equivalent="1"/>
+		<IfcSIUnit UnitType="THERMODYNAMICTEMPERATUREUNIT" Name="DEGREE_CELSIUS" SI_equivalent="1"/>
+		<IfcSIUnit UnitType="ELECTRICCURRENTUNIT" Name="AMPERE" SI_equivalent="1"/>
+		<IfcSIUnit UnitType="ELECTRICVOLTAGEUNIT" Name="VOLT" SI_equivalent="1"/>
+		<IfcSIUnit UnitType="POWERUNIT" Name="WATT" SI_equivalent="1"/>
+		<IfcSIUnit UnitType="FORCEUNIT" Prefix="KILO" Name="NEWTON" SI_equivalent="1000"/>
+		<IfcSIUnit UnitType="ILLUMINANCEUNIT" Name="LUX" SI_equivalent="1"/>
+		<IfcSIUnit UnitType="LUMINOUSFLUXUNIT" Name="LUMEN" SI_equivalent="1"/>
+		<IfcSIUnit UnitType="LUMINOUSINTENSITYUNIT" Name="CANDELA" SI_equivalent="1"/>
+		<IfcSIUnit UnitType="PRESSUREUNIT" Name="PASCAL" SI_equivalent="1"/>
+	</units>
+	<properties>
+		<IfcPropertySet id="3LAJfduSP46QN9AMf8Azy0" Name="Pset_SpaceCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Bureau 1"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3HMdgv1293xQyUzrZI35Qv" Name="Pset_SpaceCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Local technique 5"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2dAuIXWX50Uh_hZZM$hRe0" Name="Pset_SpaceCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Cave 4"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3qFn8922LByOinXK4P$aoV" Name="Pset_SpaceCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Escalier 3"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1N3BwgQeT9s9awUroZcKct" Name="Pset_SpaceCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="WC 2"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2jM2kBTbz6qu22rAkWbcYL" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 220 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="084c7oZdnF6h2x$a4xokAX" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 220 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="00DNuAG0H9X81rlhrvYJao" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 220 mm"/>
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0ZhsrugT93kBqGe7ZUunet" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 220 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2q2GK9cUj89uAmOcHjPQcc" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 220 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1gaVTiZRr3LgN4bp0ZrxiU" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 220 mm"/>
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="ExtendToStructure" NominalValue="false"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="true"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1tO8SN_E95iQN6_g5fNOtk" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2ESwpRzPf8XBBduAHFQkTt" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="00DNuAG0H9X81rlhrvYJbZ" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2wkL0iknb5lPm$gIWqYb9c" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1T2shKTRb7fvb6Qhylw6fa" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1gaVTiZRr3LgN4bp0ZrxjN" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="ExtendToStructure" NominalValue="false"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="true"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0XcfjKrAz9Qv0rNrFzRSA_" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="04PUxMkZv6dwklAz_kKQv_" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1gaVTiZRr3LgN4bp0ZrxkO" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="ExtendToStructure" NominalValue="false"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="true"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2WbBZZ149AhxG6ga_bi9cr" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1fEd$9tuv0BQWBUifiOq5h" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1gaVTiZRr3LgN4bp0Zrxkj" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="ExtendToStructure" NominalValue="false"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="true"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 180 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1RhO1db5P42Anhz$7D7hGb" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="23iIfzfnf0c9sMRUtsoYAF" Name="Pset_ReinforcementBarPitchOfSlab">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3o$KjsGRz6nfJq4gNjg05b" Name="Pset_SlabCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="true"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+			<IfcPropertySingleValue Name="PitchAngle" NominalValue="0"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2ZatK0_JT4FwQDQUcG6A2a" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3ZZiRnTLX5IuGHWDAvujTR" Name="Pset_ReinforcementBarPitchOfSlab">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3Zu5Bv0LOHrPC12$k6FoR_" Name="Pset_SlabCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0Wi7e6U9P0sADxAP3insGZ" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0WWHie90f9OvyO$CynlCQZ" Name="Pset_ReinforcementBarPitchOfSlab">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3o$KjsGRz6nfJq4gNjg05w" Name="Pset_SlabCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="true"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+			<IfcPropertySingleValue Name="PitchAngle" NominalValue="0"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="19AzPfvkn3Egn6pDVrmvE4" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="19zNDUQUPEdgiDyK7fqzGT" Name="Pset_ReinforcementBarPitchOfSlab">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1YbdTmLzr93up_$GNuMM$Y" Name="Pset_SlabCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique  150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3o$KjsGRz6nfJq4gxjg0Np" Name="Pset_DoorCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="0864 x 2220mm"/>
+			<IfcPropertySingleValue Name="ThermalTransmittance" NominalValue="3.7021"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2RLTTXfIf9ZuzKtUFNNL8R" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="0864 x 2220mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="06cUpYJnr90AkB9YM9SQZa" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0pbKxCrGrA4hvp2FdnLWZG" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1qgIVklK97Qx1XstjLJwW6" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="31mPH6mU19n8JvDyCXB6pO" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3cvALV2Br2Jg6xNmffuuXo" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1qgIVklK97Qx1XstjLJwVv" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="ExtendToStructure" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="false"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1qgIVklK97Qx1XstPLJwXF" Name="Pset_DoorCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="0800 x 2134mm"/>
+			<IfcPropertySingleValue Name="ThermalTransmittance" NominalValue="3.7021"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1kQErJRl9D78ivyK67GFLg" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="0800 x 2134mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0vufjG89T6cOkbIrxIKMwh" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3WHo953$nAbAh9lfUFS0qY" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2QYdTQrR99$eTQ0mVivQEM" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="ExtendToStructure" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="false"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="24rDTy_FHB8vw9n5N9WjcD" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="29JSqMGET3of4WJcYDKRMi" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2QYdTQrR99$eTQ0mVivQ0D" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="ExtendToStructure" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 150 mm"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="false"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2QYdTQrR99$eTQ0mhivQ2$" Name="Pset_DoorCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="0800 x 2134mm"/>
+			<IfcPropertySingleValue Name="ThermalTransmittance" NominalValue="3.7021"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0CqQoo2qzD19MXk0OQAWFo" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="0800 x 2134mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2QYdTQrR99$eTQ0mhivQ5L" Name="Pset_DoorCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="0800 x 2134mm"/>
+			<IfcPropertySingleValue Name="ThermalTransmittance" NominalValue="3.7021"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3YTkpUEw58r9yX$m$JVnPQ" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="0800 x 2134mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0qeC4Acen1zOXzvTx4TZZm" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Contremarche 190 mm max marche 250 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="08HlXjoEf7aRu7_$IwxTQ6" Name="Pset_StairCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Contremarche 190 mm max marche 250 mm"/>
+			<IfcPropertySingleValue Name="NumberOfRiser" NominalValue="14"/>
+			<IfcPropertySingleValue Name="NumberOfTreads" NominalValue="13"/>
+			<IfcPropertySingleValue Name="RiserHeight" NominalValue="185"/>
+			<IfcPropertySingleValue Name="TreadLength" NominalValue="250"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0c9NXDNgL7V9cz4NRN5ZT_" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Marche 50 mm Contremarche 13 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="18MGkIZAX4les7IEHtuZ8S" Name="Pset_StairFlightCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Marche 50 mm Contremarche 13 mm"/>
+			<IfcPropertySingleValue Name="NumberOfRiser" NominalValue="14"/>
+			<IfcPropertySingleValue Name="NumberOfTreads" NominalValue="13"/>
+			<IfcPropertySingleValue Name="RiserHeight" NominalValue="185"/>
+			<IfcPropertySingleValue Name="TreadLength" NominalValue="250"/>
+			<IfcPropertySingleValue Name="NosingLength" NominalValue="0"/>
+			<IfcPropertySingleValue Name="WalkingLineOffset" NominalValue="500"/>
+			<IfcPropertySingleValue Name="TreadLengthAtOffset" NominalValue="250"/>
+			<IfcPropertySingleValue Name="WaistThickness" NominalValue="1000"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="08HlXjoEf7aRu7_$wwxTQ6" Name="Pset_MemberCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Contremarche 190 mm max marche 250 mm"/>
+			<IfcPropertySingleValue Name="Span" NominalValue="50"/>
+			<IfcPropertySingleValue Name="Slope" NominalValue="0"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="22HIAbHln8LAz5xc_Pwhfj" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Contremarche 190 mm max marche 250 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0YhYMS4br1BAOKpRvhbz4B" Name="Pset_MemberCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Contremarche 190 mm max marche 250 mm"/>
+			<IfcPropertySingleValue Name="Slope" NominalValue="0"/>
+			<IfcPropertySingleValue Name="Span" NominalValue="50"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2gczhfdeD04QoJYaCL8XXy" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Contremarche 190 mm max marche 250 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0q351pBkDELAC8pFMk7jCc" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1050 x 1020mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3iGPD2XBzCTQrkBd6gkk9B" Name="Pset_WindowCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="1050 x 1020mm"/>
+			<IfcPropertySingleValue Name="ThermalTransmittance" NominalValue="3.6886"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2MTdkKOBf7f8uS6OQ2Ma4H" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 60 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2G9VuYMYn6ZOaOu_CP0UGq" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 60 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3o$KjsGRz6nfJq4gFjg0T7" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 60 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3DetulH$fDCQlU_ewug0ky" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 60 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1ZJ4oF6P5BAPboxk2VxLa7" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 60 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="13hioL9oj5$wU95LDBOH43" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="ExtendToStructure" NominalValue="false"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 60 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0vxTLcnjn8GvLIFIm_l0kW" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 60 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1o5zIiVXn0BhjDHW9VrI1c" Name="Pset_ReinforcementBarPitchOfWall">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 60 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="13hioL9oj5$wU95LDBOH4d" Name="Pset_WallCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="ExtendToStructure" NominalValue="false"/>
+			<IfcPropertySingleValue Name="LoadBearing" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="Générique - 60 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="07fca18f54UQiG92qfDd30" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="860 x 600mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0sBX3abT13B80oin$ECTUZ" Name="Pset_WindowCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="860 x 600mm"/>
+			<IfcPropertySingleValue Name="ThermalTransmittance" NominalValue="3.6886"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0sBX3abT13B80oin7ECT3B" Name="Pset_DoorCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="0700 x 2134mm"/>
+			<IfcPropertySingleValue Name="ThermalTransmittance" NominalValue="3.7021"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2xjdWRVLP8B9oARp44gREp" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="0700 x 2134mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3VSzZJZ0r798MahfctE3gT" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="860 x 600mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1JFPIB0iXEqAa7_67S8Zba" Name="Pset_WindowCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="true"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="860 x 600mm"/>
+			<IfcPropertySingleValue Name="ThermalTransmittance" NominalValue="3.6886"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0vhLxtOXP6QRYAFa7j1uXs" Name="Pset_DistributionFlowElementCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Par défaut"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="27rLSZuD546AMcLyGyLwiL" Name="Pset_FlowSegmentDuctSegment">
+			<IfcPropertySingleValue Name="Length" NominalValue="2700"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2ViGt6RUrAxwnxndciUojt" Name="Pset_FlowSegmentPipeSegment">
+			<IfcPropertySingleValue Name="Length" NominalValue="2700"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="377PZdU5v5_R9xnVBM5wXr" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Par défaut"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="08TkSoqCn2Rxhnh5yAuPNX" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1600 x 800"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1MCEhXO4v5$QMvM$3uI1Ty" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1600 x 800"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="2pQZkPu29DIg5IzcUG8Acy" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="Etudiant 1525 x 762 mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0dYZkxjBn6YuceABcxYM2I" Name="Pset_BuildingElementProxyCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1493882975908-Potted plant revit model"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3XYnN_U41COApF$$1hT3UP" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1493882975908-Potted plant revit model"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="31egs_7Xr6tgnXXjWo6pr3" Name="Pset_BuildingElementProxyCommon">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1493882975908-Potted plant revit model"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="04XZkjonX2mxnB4MGnF$e2" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1493882975908-Potted plant revit model"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0yAdv5IXLDIRs64MxaeSOU" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1600 x 800"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="0mHqHGPXXCxxf1Vl7UYdsl" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1600 x 800"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="268usEzEL1mvEmRBFoVxkr" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1100mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1E_iBcALXEBOcvOYnxHOJP" Name="Pset_RailingCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="1100mm"/>
+			<IfcPropertySingleValue Name="Height" NominalValue="1100"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1og5cRya5E28lhkI$Arwur" Name="Pset_QuantityTakeOff">
+			<IfcPropertySingleValue Name="Reference" NominalValue="1100mm"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="1iWAFvxS5ExeQK$MWLQFxg" Name="Pset_RailingCommon">
+			<IfcPropertySingleValue Name="IsExternal" NominalValue="false"/>
+			<IfcPropertySingleValue Name="Reference" NominalValue="1100mm"/>
+			<IfcPropertySingleValue Name="Height" NominalValue="1100"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="3Zu5Bv0LOHrPC12_o6FoQQ" Name="Pset_BuildingStoreyCommon">
+			<IfcPropertySingleValue Name="AboveGround" NominalValue="false"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="15Z0v90RiHrPC22_o6FoKR" Name="Pset_BuildingStoreyCommon">
+			<IfcPropertySingleValue Name="AboveGround" NominalValue="false"/>
+		</IfcPropertySet>
+		<IfcPropertySet id="27PCKGLxT4mxtVBOQ6mgBW" Name="Pset_BuildingCommon">
+			<IfcPropertySingleValue Name="NumberOfStoreys" NominalValue="2"/>
+			<IfcPropertySingleValue Name="IsLandmarked" NominalValue="false"/>
+		</IfcPropertySet>
+	</properties>
+	<quantities/>
+	<types>
+		<IfcWallType id="00DNuAG0H9X81rjK1vYJao" Name="Mur de base:Générique - 220 mm" Tag="352605" PredefinedType="STANDARD">
+			<IfcPropertySet xlink:href="#2jM2kBTbz6qu22rAkWbcYL"/>
+			<IfcPropertySet xlink:href="#084c7oZdnF6h2x$a4xokAX"/>
+			<IfcPropertySet xlink:href="#00DNuAG0H9X81rlhrvYJao"/>
+		</IfcWallType>
+		<IfcWallType id="00DNuAG0H9X81rjK1vYJbZ" Name="Mur de base:Générique - 180 mm" Tag="352524" PredefinedType="STANDARD">
+			<IfcPropertySet xlink:href="#1tO8SN_E95iQN6_g5fNOtk"/>
+			<IfcPropertySet xlink:href="#2ESwpRzPf8XBBduAHFQkTt"/>
+			<IfcPropertySet xlink:href="#00DNuAG0H9X81rlhrvYJbZ"/>
+		</IfcWallType>
+		<IfcSlabType id="3Zu5Bv0LOHrPC10026FoR_" Name="Sol:Générique  150 mm" Tag="339" PredefinedType="FLOOR">
+			<IfcPropertySet xlink:href="#2ZatK0_JT4FwQDQUcG6A2a"/>
+			<IfcPropertySet xlink:href="#3ZZiRnTLX5IuGHWDAvujTR"/>
+			<IfcPropertySet xlink:href="#3Zu5Bv0LOHrPC12$k6FoR_"/>
+		</IfcSlabType>
+		<IfcSlabType id="1xlqlqAGb1jhkvU0yZ0QtT" Name="Sol:Générique  150 mm" Tag="339" PredefinedType="FLOOR">
+			<IfcPropertySet xlink:href="#19AzPfvkn3Egn6pDVrmvE4"/>
+			<IfcPropertySet xlink:href="#19zNDUQUPEdgiDyK7fqzGT"/>
+			<IfcPropertySet xlink:href="#1YbdTmLzr93up_$GNuMM$Y"/>
+		</IfcSlabType>
+		<IfcDoorStyle id="3Dj7rW6LL0NOhjeJ7vClnv" Name="0864 x 2220mm" Tag="358353" OperationType="SINGLE_SWING_LEFT" ConstructionType="NOTDEFINED" ParameterTakesPrecedence="false" Sizeable="false"/>
+		<IfcWallType id="1qgIVklK97Qx1Xq8PLJwW6" Name="Mur de base:Générique - 150 mm" Tag="354349" PredefinedType="STANDARD">
+			<IfcPropertySet xlink:href="#06cUpYJnr90AkB9YM9SQZa"/>
+			<IfcPropertySet xlink:href="#0pbKxCrGrA4hvp2FdnLWZG"/>
+			<IfcPropertySet xlink:href="#1qgIVklK97Qx1XstjLJwW6"/>
+		</IfcWallType>
+		<IfcDoorStyle id="1qgIVklK97Qx1Xq9DLJwak" Name="0800 x 2134mm" Tag="354518" OperationType="SINGLE_SWING_RIGHT" ConstructionType="NOTDEFINED" ParameterTakesPrecedence="false" Sizeable="false"/>
+		<IfcMemberType id="2G8FWepbLFNPaY9uTwv0wz" Name="Limon à la française:Limon à la française - 50 mm" Tag="141732" PredefinedType="STRINGER"/>
+		<IfcWindowStyle id="3Dj7rW6LL0NOhjeJ7vCluz" Name="1050 x 1020mm" Tag="357796" ConstructionType="NOTDEFINED" OperationType="NOTDEFINED" ParameterTakesPrecedence="false" Sizeable="false"/>
+		<IfcWallType id="3o$KjsGRz6nfJq6Lxjg0T7" Name="Mur de base:Générique - 60 mm" Tag="353443" PredefinedType="STANDARD">
+			<IfcPropertySet xlink:href="#2MTdkKOBf7f8uS6OQ2Ma4H"/>
+			<IfcPropertySet xlink:href="#2G9VuYMYn6ZOaOu_CP0UGq"/>
+			<IfcPropertySet xlink:href="#3o$KjsGRz6nfJq4gFjg0T7"/>
+		</IfcWallType>
+		<IfcWindowStyle id="3Dj7rW6LL0NOhjeJ7vCl3C" Name="860 x 600mm" Tag="359253" ConstructionType="NOTDEFINED" OperationType="NOTDEFINED" ParameterTakesPrecedence="false" Sizeable="false"/>
+		<IfcDoorStyle id="3Dj7rW6LL0NOhjeJ7vCl5A" Name="0700 x 2134mm" Tag="359113" OperationType="SINGLE_SWING_RIGHT" ConstructionType="NOTDEFINED" ParameterTakesPrecedence="false" Sizeable="false"/>
+		<IfcDuctSegmentType id="1MZ7ZAV2v5ofV8v5FLsUwd" Name="Gaine ovale:Par défaut" Tag="176921" PredefinedType="NOTDEFINED"/>
+		<IfcFurnitureType id="0iq2C_ndH2CAudJ2JszcUf" Name="1600 x 800" Tag="365278"/>
+		<IfcFurnitureType id="1MOQzTn01CUOnRcQTLovGb" Name="Etudiant 1525 x 762 mm" Tag="99778"/>
+		<IfcBuildingElementProxyType id="1SCr5zlwf6XPBY0i$tBXMd" Name="1493882975908-Potted plant revit model" Tag="362705" PredefinedType="NOTDEFINED">
+			<IfcPropertySet xlink:href="#31egs_7Xr6tgnXXjWo6pr3"/>
+			<IfcPropertySet xlink:href="#04XZkjonX2mxnB4MGnF$e2"/>
+		</IfcBuildingElementProxyType>
+	</types>
+	<layers>
+		<IfcPresentationLayerAssignment id="A-AREA-____-OTLN" Name="A-AREA-____-OTLN"/>
+		<IfcPresentationLayerAssignment id="A-DOOR-____-OTLN" Name="A-DOOR-____-OTLN"/>
+		<IfcPresentationLayerAssignment id="A-FLOR-____-OTLN" Name="A-FLOR-____-OTLN"/>
+		<IfcPresentationLayerAssignment id="A-FLOR-HRAL-OTLN" Name="A-FLOR-HRAL-OTLN"/>
+		<IfcPresentationLayerAssignment id="A-GLAZ-____-OTLN" Name="A-GLAZ-____-OTLN"/>
+		<IfcPresentationLayerAssignment id="A-WALL-____-OTLN" Name="A-WALL-____-OTLN"/>
+		<IfcPresentationLayerAssignment id="I-FURN-____-OTLN" Name="I-FURN-____-OTLN"/>
+		<IfcPresentationLayerAssignment id="L-PLNT-____-OTLN" Name="L-PLNT-____-OTLN"/>
+		<IfcPresentationLayerAssignment id="M-HVAC-DUCT-OTLN" Name="M-HVAC-DUCT-OTLN"/>
+		<IfcPresentationLayerAssignment id="S-STRS-____-OTLN" Name="S-STRS-____-OTLN"/>
+	</layers>
+	<materials>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_329" LayerSetName="Mur de base:Générique - 220 mm" LayerSetDirection="AXIS2" DirectionSense="NEGATIVE" OffsetFromReferenceLine="110">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="220"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSet id="IfcMaterialLayerSet_326" LayerSetName="Mur de base:Générique - 220 mm">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="220"/>
+		</IfcMaterialLayerSet>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_397" LayerSetName="Mur de base:Générique - 180 mm" LayerSetDirection="AXIS2" DirectionSense="NEGATIVE" OffsetFromReferenceLine="90">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="180"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSet id="IfcMaterialLayerSet_394" LayerSetName="Mur de base:Générique - 180 mm">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="180"/>
+		</IfcMaterialLayerSet>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_454" LayerSetName="Mur de base:Générique - 180 mm" LayerSetDirection="AXIS2" DirectionSense="NEGATIVE" OffsetFromReferenceLine="90">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="180"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_498" LayerSetName="Mur de base:Générique - 180 mm" LayerSetDirection="AXIS2" DirectionSense="NEGATIVE" OffsetFromReferenceLine="90">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="180"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_560" LayerSetName="Sol:Générique  150 mm" LayerSetDirection="AXIS3" DirectionSense="POSITIVE" OffsetFromReferenceLine="0">
+			<IfcMaterialLayer Name="Sol par défaut" LayerThickness="150"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_614" LayerSetName="Sol:Générique  150 mm" LayerSetDirection="AXIS3" DirectionSense="POSITIVE" OffsetFromReferenceLine="0">
+			<IfcMaterialLayer Name="Sol par défaut" LayerThickness="150"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_812" LayerSetName="Mur de base:Générique - 150 mm" LayerSetDirection="AXIS2" DirectionSense="NEGATIVE" OffsetFromReferenceLine="75">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="150"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSet id="IfcMaterialLayerSet_809" LayerSetName="Mur de base:Générique - 150 mm">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="150"/>
+		</IfcMaterialLayerSet>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_975" LayerSetName="Mur de base:Générique - 150 mm" LayerSetDirection="AXIS2" DirectionSense="NEGATIVE" OffsetFromReferenceLine="75">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="150"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_1019" LayerSetName="Mur de base:Générique - 150 mm" LayerSetDirection="AXIS2" DirectionSense="NEGATIVE" OffsetFromReferenceLine="75">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="150"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_1637" LayerSetName="Mur de base:Générique - 60 mm" LayerSetDirection="AXIS2" DirectionSense="NEGATIVE" OffsetFromReferenceLine="30">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="60"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSet id="IfcMaterialLayerSet_1634" LayerSetName="Mur de base:Générique - 60 mm">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="60"/>
+		</IfcMaterialLayerSet>
+		<IfcMaterialLayerSetUsage id="IfcMaterialLayerSetUsage_1694" LayerSetName="Mur de base:Générique - 60 mm" LayerSetDirection="AXIS2" DirectionSense="NEGATIVE" OffsetFromReferenceLine="30">
+			<IfcMaterialLayer Name="Mur par défaut" LayerThickness="60"/>
+		</IfcMaterialLayerSetUsage>
+		<IfcMaterialLayerSet id="IfcMaterialLayerSet_557" LayerSetName="Sol:Générique  150 mm">
+			<IfcMaterialLayer Name="Sol par défaut" LayerThickness="150"/>
+		</IfcMaterialLayerSet>
+		<IfcMaterialList id="IfcMaterialList_750">
+			<IfcMaterial Name="Porte - Cadre"/>
+			<IfcMaterial Name="Porte - Panneau"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_766">
+			<IfcMaterial Name="Porte - Cadre"/>
+			<IfcMaterial Name="Porte - Panneau"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_918">
+			<IfcMaterial Name="Porte - Cadre"/>
+			<IfcMaterial Name="Porte - Panneau"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_933">
+			<IfcMaterial Name="Porte - Cadre"/>
+			<IfcMaterial Name="Porte - Panneau"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_1049">
+			<IfcMaterial Name="Porte - Cadre"/>
+			<IfcMaterial Name="Porte - Panneau"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_1075">
+			<IfcMaterial Name="Porte - Cadre"/>
+			<IfcMaterial Name="Porte - Panneau"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_1576">
+			<IfcMaterial Name="Verre"/>
+			<IfcMaterial Name="Châssis"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_1591">
+			<IfcMaterial Name="Verre"/>
+			<IfcMaterial Name="Châssis"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_1819">
+			<IfcMaterial Name="Verre"/>
+			<IfcMaterial Name="Châssis"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_1834">
+			<IfcMaterial Name="Verre"/>
+			<IfcMaterial Name="Châssis"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_1924">
+			<IfcMaterial Name="Porte - Cadre"/>
+			<IfcMaterial Name="Porte - Panneau"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_1939">
+			<IfcMaterial Name="Porte - Cadre"/>
+			<IfcMaterial Name="Porte - Panneau"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_1967">
+			<IfcMaterial Name="Verre"/>
+			<IfcMaterial Name="Châssis"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_3440">
+			<IfcMaterial Name="Stratifié, ivoire, mat"/>
+			<IfcMaterial Name="Acier, chromé"/>
+			<IfcMaterial Name="Cerisier"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_3460">
+			<IfcMaterial Name="Stratifié, ivoire, mat"/>
+			<IfcMaterial Name="Acier, chromé"/>
+			<IfcMaterial Name="Cerisier"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_3485">
+			<IfcMaterial Name="Stratifié, ivoire, mat"/>
+			<IfcMaterial Name="Acier, chromé"/>
+			<IfcMaterial Name="Cerisier"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_4809">
+			<IfcMaterial Name="Stratifié, ivoire, mat"/>
+			<IfcMaterial Name="Acier, chromé"/>
+			<IfcMaterial Name="Cerisier"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_4828">
+			<IfcMaterial Name="Stratifié, ivoire, mat"/>
+			<IfcMaterial Name="Acier, chromé"/>
+			<IfcMaterial Name="Cerisier"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_42245">
+			<IfcMaterial Name="3D plant-2"/>
+			<IfcMaterial Name="3D plant-1"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_42264">
+			<IfcMaterial Name="3D plant-2"/>
+			<IfcMaterial Name="3D plant-1"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_42301">
+			<IfcMaterial Name="Stratifié, ivoire, mat"/>
+			<IfcMaterial Name="Acier, chromé"/>
+			<IfcMaterial Name="Cerisier"/>
+		</IfcMaterialList>
+		<IfcMaterialList id="IfcMaterialList_42325">
+			<IfcMaterial Name="Stratifié, ivoire, mat"/>
+			<IfcMaterial Name="Acier, chromé"/>
+			<IfcMaterial Name="Cerisier"/>
+		</IfcMaterialList>
+	</materials>
+	<decomposition>
+		<IfcProject id="24GFv2RD11lgEtgiTzvGsH" Name="0001" LongName="Etoy" Phase="Etat du projet">
+			<IfcSite id="24GFv2RD11lgEtgiTzvGsJ" Name="Default" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1" CompositionType="ELEMENT" RefLatitude="42.213001251111" RefLongitude="-71.033500671111" RefElevation="0">
+				<IfcBuilding id="24GFv2RD11lgEtgiTzvGsG" Name="" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1" LongName="" CompositionType="ELEMENT">
+					<IfcBuildingStorey id="24GFv2RD11lgEtgiU26lDM" Name="Sous-Sol" ObjectType="Niveau:Pointe 8 mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" LongName="Sous-Sol" CompositionType="ELEMENT" Elevation="-2590">
+						<IfcWallStandardCase id="1gaVTiZRr3LgN4dCqZrxiU" Name="Mur de base:Générique - 220 mm:352270" ObjectType="Mur de base:Générique - 220 mm" ObjectPlacement="0 -1 0 0 1 0 0 0 0 0 1 0 -2976.44 7172.25 -2590 1" Tag="352270">
+							<IfcPropertySet xlink:href="#0ZhsrugT93kBqGe7ZUunet"/>
+							<IfcPropertySet xlink:href="#2q2GK9cUj89uAmOcHjPQcc"/>
+							<IfcPropertySet xlink:href="#1gaVTiZRr3LgN4bp0ZrxiU"/>
+							<IfcWallType xlink:href="#00DNuAG0H9X81rjK1vYJao"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_329"/>
+						</IfcWallStandardCase>
+						<IfcWallStandardCase id="1gaVTiZRr3LgN4dCqZrxjN" Name="Mur de base:Générique - 180 mm:352327" ObjectType="Mur de base:Générique - 180 mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 -2866.44 -5557.75 -2590 1" Tag="352327">
+							<IfcOpeningElement id="0sBX3abT13B80okFBECTUZ" Name="M_Fixé:860 x 600mm:357217:1" ObjectType="Opening" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 53.5557 -5467.75 -1190 1">
+								<IfcWindow id="0sBX3abT13B80okE7ECTUZ" Name="M_Fixé:860 x 600mm:357217" ObjectType="M_Fixé:860 x 600mm" ObjectPlacement="-1 0 0 0 0 -1 0 0 0 0 1 0 53.5557 -5467.75 -1190 1" Tag="357217" OverallHeight="600" OverallWidth="860">
+									<IfcPropertySet xlink:href="#07fca18f54UQiG92qfDd30"/>
+									<IfcPropertySet xlink:href="#0sBX3abT13B80oin$ECTUZ"/>
+									<IfcWindowStyle xlink:href="#3Dj7rW6LL0NOhjeJ7vCl3C"/>
+									<IfcPresentationLayerAssignment xlink:href="#A-GLAZ-____-OTLN"/>
+									<IfcMaterialList xlink:href="#IfcMaterialList_1834"/>
+								</IfcWindow>
+								<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							</IfcOpeningElement>
+							<IfcOpeningElement id="1JFPIB0iXEqAa7yupS8Zba" Name="M_Fixé:860 x 600mm:359465:1" ObjectType="Opening" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 -1116.44 -5467.75 -1190 1">
+								<IfcWindow id="1JFPIB0iXEqAa7yv$S8Zba" Name="M_Fixé:860 x 600mm:359465" ObjectType="M_Fixé:860 x 600mm" ObjectPlacement="-1 0 0 0 0 -1 0 0 0 0 1 0 -1116.44 -5467.75 -1190 1" Tag="359465" OverallHeight="600" OverallWidth="860">
+									<IfcPropertySet xlink:href="#3VSzZJZ0r798MahfctE3gT"/>
+									<IfcPropertySet xlink:href="#1JFPIB0iXEqAa7_67S8Zba"/>
+									<IfcWindowStyle xlink:href="#3Dj7rW6LL0NOhjeJ7vCl3C"/>
+									<IfcPresentationLayerAssignment xlink:href="#A-GLAZ-____-OTLN"/>
+									<IfcMaterialList xlink:href="#IfcMaterialList_1967"/>
+								</IfcWindow>
+								<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							</IfcOpeningElement>
+							<IfcPropertySet xlink:href="#2wkL0iknb5lPm$gIWqYb9c"/>
+							<IfcPropertySet xlink:href="#1T2shKTRb7fvb6Qhylw6fa"/>
+							<IfcPropertySet xlink:href="#1gaVTiZRr3LgN4bp0ZrxjN"/>
+							<IfcWallType xlink:href="#00DNuAG0H9X81rjK1vYJbZ"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_397"/>
+						</IfcWallStandardCase>
+						<IfcWallStandardCase id="1gaVTiZRr3LgN4dCqZrxkO" Name="Mur de base:Générique - 180 mm:352392" ObjectType="Mur de base:Générique - 180 mm" ObjectPlacement="0 1 0 0 -1 0 0 0 0 0 1 0 3843.56 -5467.75 -2590 1" Tag="352392">
+							<IfcOpeningElement id="3o$KjsGRz6nfJq6Ktjg0Np" Name="M_Simple avec alignement:0864 x 2220mm:353815:1" ObjectType="Opening" ObjectPlacement="0 1 0 0 -1 0 0 0 0 0 1 0 3933.56 -5397.75 -2590 1">
+								<IfcDoor id="3o$KjsGRz6nfJq6Lxjg0Np" Name="M_Simple avec alignement:0864 x 2220mm:353815" ObjectType="M_Simple avec alignement:0864 x 2220mm" ObjectPlacement="0 1 0 0 -1 0 0 0 0 0 1 0 3933.56 -5397.75 -2590 1" Tag="353815" OverallHeight="2220" OverallWidth="864">
+									<IfcPropertySet xlink:href="#3o$KjsGRz6nfJq4gxjg0Np"/>
+									<IfcPropertySet xlink:href="#2RLTTXfIf9ZuzKtUFNNL8R"/>
+									<IfcDoorStyle xlink:href="#3Dj7rW6LL0NOhjeJ7vClnv"/>
+									<IfcPresentationLayerAssignment xlink:href="#A-DOOR-____-OTLN"/>
+									<IfcMaterialList xlink:href="#IfcMaterialList_766"/>
+								</IfcDoor>
+								<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							</IfcOpeningElement>
+							<IfcOpeningElement id="3iGPD2XBzCTQrk9Pogkk9B" Name="M_Fixé:1050 x 1020mm:355835:1" ObjectType="Opening" ObjectPlacement="0 1 0 0 -1 0 0 0 0 0 1 0 3753.56 -3285.75 -1345 1">
+								<IfcWindow id="3iGPD2XBzCTQrk9O_gkk9B" Name="M_Fixé:1050 x 1020mm:355835" ObjectType="M_Fixé:1050 x 1020mm" ObjectPlacement="0 -1 0 0 1 0 0 0 0 0 1 0 3753.56 -3285.75 -1345 1" Tag="355835" OverallHeight="1038" OverallWidth="1068">
+									<IfcPropertySet xlink:href="#0q351pBkDELAC8pFMk7jCc"/>
+									<IfcPropertySet xlink:href="#3iGPD2XBzCTQrkBd6gkk9B"/>
+									<IfcWindowStyle xlink:href="#3Dj7rW6LL0NOhjeJ7vCluz"/>
+									<IfcPresentationLayerAssignment xlink:href="#A-GLAZ-____-OTLN"/>
+									<IfcMaterialList xlink:href="#IfcMaterialList_1591"/>
+								</IfcWindow>
+								<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							</IfcOpeningElement>
+							<IfcPropertySet xlink:href="#0XcfjKrAz9Qv0rNrFzRSA_"/>
+							<IfcPropertySet xlink:href="#04PUxMkZv6dwklAz_kKQv_"/>
+							<IfcPropertySet xlink:href="#1gaVTiZRr3LgN4bp0ZrxkO"/>
+							<IfcWallType xlink:href="#00DNuAG0H9X81rjK1vYJbZ"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_454"/>
+						</IfcWallStandardCase>
+						<IfcWallStandardCase id="1gaVTiZRr3LgN4dCqZrxkj" Name="Mur de base:Générique - 180 mm:352445" ObjectType="Mur de base:Générique - 180 mm" ObjectPlacement="-1 0 0 0 0 -1 0 0 0 0 1 0 3753.56 7082.25 -2590 1" Tag="352445">
+							<IfcPropertySet xlink:href="#2WbBZZ149AhxG6ga_bi9cr"/>
+							<IfcPropertySet xlink:href="#1fEd$9tuv0BQWBUifiOq5h"/>
+							<IfcPropertySet xlink:href="#1gaVTiZRr3LgN4bp0Zrxkj"/>
+							<IfcWallType xlink:href="#00DNuAG0H9X81rjK1vYJbZ"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_498"/>
+						</IfcWallStandardCase>
+						<IfcSlab id="3o$KjsGRz6nfJq6Lxjg05w" Name="Sol:Générique  150 mm:352926" ObjectType="Sol:Générique  150 mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" Tag="352926" PredefinedType="FLOOR">
+							<IfcPropertySet xlink:href="#0Wi7e6U9P0sADxAP3insGZ"/>
+							<IfcPropertySet xlink:href="#0WWHie90f9OvyO$CynlCQZ"/>
+							<IfcPropertySet xlink:href="#3o$KjsGRz6nfJq4gNjg05w"/>
+							<IfcSlabType xlink:href="#1xlqlqAGb1jhkvU0yZ0QtT"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-FLOR-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_614"/>
+						</IfcSlab>
+						<IfcWallStandardCase id="1qgIVklK97Qx1Xq8PLJwVv" Name="Mur de base:Générique - 150 mm:354258" ObjectType="Mur de base:Générique - 150 mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 -2866.44 -287.752 -2590 1" Tag="354258">
+							<IfcOpeningElement id="1qgIVklK97Qx1Xq9LLJwXF" Name="M_Simple avec alignement:0800 x 2134mm:354404:1" ObjectType="Opening" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 -1746.44 -212.752 -2590 1">
+								<IfcDoor id="1qgIVklK97Qx1Xq8PLJwXF" Name="M_Simple avec alignement:0800 x 2134mm:354404" ObjectType="M_Simple avec alignement:0800 x 2134mm" ObjectPlacement="-1 0 0 0 0 -1 0 0 0 0 1 0 -1746.44 -212.752 -2590 1" Tag="354404" OverallHeight="2000" OverallWidth="800">
+									<IfcPropertySet xlink:href="#1qgIVklK97Qx1XstPLJwXF"/>
+									<IfcPropertySet xlink:href="#1kQErJRl9D78ivyK67GFLg"/>
+									<IfcDoorStyle xlink:href="#1qgIVklK97Qx1Xq9DLJwak"/>
+									<IfcPresentationLayerAssignment xlink:href="#A-DOOR-____-OTLN"/>
+									<IfcMaterialList xlink:href="#IfcMaterialList_933"/>
+								</IfcDoor>
+								<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							</IfcOpeningElement>
+							<IfcPropertySet xlink:href="#31mPH6mU19n8JvDyCXB6pO"/>
+							<IfcPropertySet xlink:href="#3cvALV2Br2Jg6xNmffuuXo"/>
+							<IfcPropertySet xlink:href="#1qgIVklK97Qx1XstjLJwVv"/>
+							<IfcWallType xlink:href="#1qgIVklK97Qx1Xq8PLJwW6"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_812"/>
+						</IfcWallStandardCase>
+						<IfcWallStandardCase id="2QYdTQrR99$eTQ2FhivQEM" Name="Mur de base:Générique - 150 mm:354803" ObjectType="Mur de base:Générique - 150 mm" ObjectPlacement="0 -1 0 0 1 0 0 0 0 0 1 0 443.556 6992.25 -2590 1" Tag="354803">
+							<IfcPropertySet xlink:href="#0vufjG89T6cOkbIrxIKMwh"/>
+							<IfcPropertySet xlink:href="#3WHo953$nAbAh9lfUFS0qY"/>
+							<IfcPropertySet xlink:href="#2QYdTQrR99$eTQ0mVivQEM"/>
+							<IfcWallType xlink:href="#1qgIVklK97Qx1Xq8PLJwW6"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_975"/>
+						</IfcWallStandardCase>
+						<IfcWallStandardCase id="2QYdTQrR99$eTQ2FhivQ0D" Name="Mur de base:Générique - 150 mm:354920" ObjectType="Mur de base:Générique - 150 mm" ObjectPlacement="-1 0 0 0 0 -1 0 0 0 0 1 0 3753.56 1912.25 -2590 1" Tag="354920">
+							<IfcOpeningElement id="2QYdTQrR99$eTQ2EdivQ2$" Name="M_Simple avec alignement:0800 x 2134mm:355034:1" ObjectType="Opening" ObjectPlacement="-1 0 0 0 0 -1 0 0 0 0 1 0 2633.56 1837.25 -2590 1">
+								<IfcDoor id="2QYdTQrR99$eTQ2FhivQ2$" Name="M_Simple avec alignement:0800 x 2134mm:355034" ObjectType="M_Simple avec alignement:0800 x 2134mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 2633.56 1837.25 -2590 1" Tag="355034" OverallHeight="2000" OverallWidth="800">
+									<IfcPropertySet xlink:href="#2QYdTQrR99$eTQ0mhivQ2$"/>
+									<IfcPropertySet xlink:href="#0CqQoo2qzD19MXk0OQAWFo"/>
+									<IfcDoorStyle xlink:href="#1qgIVklK97Qx1Xq9DLJwak"/>
+									<IfcPresentationLayerAssignment xlink:href="#A-DOOR-____-OTLN"/>
+									<IfcMaterialList xlink:href="#IfcMaterialList_1049"/>
+								</IfcDoor>
+								<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							</IfcOpeningElement>
+							<IfcOpeningElement id="2QYdTQrR99$eTQ2EdivQ5L" Name="M_Simple avec alignement:0800 x 2134mm:355120:1" ObjectType="Opening" ObjectPlacement="-1 0 0 0 0 -1 0 0 0 0 1 0 -1746.44 1987.25 -2590 1">
+								<IfcDoor id="2QYdTQrR99$eTQ2FhivQ5L" Name="M_Simple avec alignement:0800 x 2134mm:355120" ObjectType="M_Simple avec alignement:0800 x 2134mm" ObjectPlacement="-1 0 0 0 0 -1 0 0 0 0 1 0 -1746.44 1987.25 -2590 1" Tag="355120" OverallHeight="2000" OverallWidth="800">
+									<IfcPropertySet xlink:href="#2QYdTQrR99$eTQ0mhivQ5L"/>
+									<IfcPropertySet xlink:href="#3YTkpUEw58r9yX$m$JVnPQ"/>
+									<IfcDoorStyle xlink:href="#1qgIVklK97Qx1Xq9DLJwak"/>
+									<IfcPresentationLayerAssignment xlink:href="#A-DOOR-____-OTLN"/>
+									<IfcMaterialList xlink:href="#IfcMaterialList_1075"/>
+								</IfcDoor>
+								<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							</IfcOpeningElement>
+							<IfcPropertySet xlink:href="#24rDTy_FHB8vw9n5N9WjcD"/>
+							<IfcPropertySet xlink:href="#29JSqMGET3of4WJcYDKRMi"/>
+							<IfcPropertySet xlink:href="#2QYdTQrR99$eTQ0mVivQ0D"/>
+							<IfcWallType xlink:href="#1qgIVklK97Qx1Xq8PLJwW6"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_1019"/>
+						</IfcWallStandardCase>
+						<IfcStair id="08HlXjoEf7aRu7y0YwxTQ6" Name="Escalier assemblé:Escalier:355389" ObjectType="Escalier assemblé:Contremarche 190 mm max marche 250 mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" Tag="355389" ShapeType="NOTDEFINED">
+							<IfcStairFlight id="08HlXjoEf7aRu7y0YwxTPJ" Name="Escalier assemblé:Escalier:355389 Run 1" ObjectType="Volée non-monobloc:Marche 50 mm Contremarche 13 mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" Tag="355560" NumberOfRiser="14" NumberOfTreads="13" RiserHeight="0.606955" TreadLength="0.82021">
+								<IfcPropertySet xlink:href="#0c9NXDNgL7V9cz4NRN5ZT_"/>
+								<IfcPropertySet xlink:href="#18MGkIZAX4les7IEHtuZ8S"/>
+								<IfcPresentationLayerAssignment xlink:href="#S-STRS-____-OTLN"/>
+							</IfcStairFlight>
+							<IfcMember id="08HlXjoEf7aRu7y0YwxTPH" Name="Escalier assemblé:Escalier:355389 Stringer 1" ObjectType="Limon à la française:Limon à la française - 50 mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" Tag="355562">
+								<IfcPropertySet xlink:href="#08HlXjoEf7aRu7_$wwxTQ6"/>
+								<IfcPropertySet xlink:href="#22HIAbHln8LAz5xc_Pwhfj"/>
+								<IfcMemberType xlink:href="#2G8FWepbLFNPaY9uTwv0wz"/>
+								<IfcPresentationLayerAssignment xlink:href="#S-STRS-____-OTLN"/>
+							</IfcMember>
+							<IfcMember id="08HlXjoEf7aRu7y0YwxTPG" Name="Escalier assemblé:Escalier:355389 Stringer 2" ObjectType="Limon à la française:Limon à la française - 50 mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" Tag="355563">
+								<IfcPropertySet xlink:href="#0YhYMS4br1BAOKpRvhbz4B"/>
+								<IfcPropertySet xlink:href="#2gczhfdeD04QoJYaCL8XXy"/>
+								<IfcMemberType xlink:href="#2G8FWepbLFNPaY9uTwv0wz"/>
+								<IfcPresentationLayerAssignment xlink:href="#S-STRS-____-OTLN"/>
+							</IfcMember>
+							<IfcRailing id="08HlXjoEf7aRu7y0YwxTSj" Name="Garde-corps:1100mm:355734" ObjectType="Garde-corps:1100mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" Tag="355734" PredefinedType="NOTDEFINED">
+								<IfcPropertySet xlink:href="#268usEzEL1mvEmRBFoVxkr"/>
+								<IfcPropertySet xlink:href="#1E_iBcALXEBOcvOYnxHOJP"/>
+								<IfcPresentationLayerAssignment xlink:href="#A-FLOR-HRAL-OTLN"/>
+							</IfcRailing>
+							<IfcRailing id="08HlXjoEf7aRu7y0YwxTSX" Name="Garde-corps:1100mm:355738" ObjectType="Garde-corps:1100mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" Tag="355738" PredefinedType="NOTDEFINED">
+								<IfcPropertySet xlink:href="#1og5cRya5E28lhkI$Arwur"/>
+								<IfcPropertySet xlink:href="#1iWAFvxS5ExeQK$MWLQFxg"/>
+								<IfcPresentationLayerAssignment xlink:href="#A-FLOR-HRAL-OTLN"/>
+							</IfcRailing>
+							<IfcPropertySet xlink:href="#0qeC4Acen1zOXzvTx4TZZm"/>
+							<IfcPropertySet xlink:href="#08HlXjoEf7aRu7_$IwxTQ6"/>
+						</IfcStair>
+						<IfcWallStandardCase id="13hioL9oj5$wU97gvBOH43" Name="Mur de base:Générique - 60 mm:356440" ObjectType="Mur de base:Générique - 60 mm" ObjectPlacement="0 1 0 0 -1 0 0 0 0 0 1 0 -966.444 -5467.75 -2590 1" Tag="356440">
+							<IfcOpeningElement id="0sBX3abT13B80okFBECT3B" Name="M_Simple avec alignement:0700 x 2134mm:357385:1" ObjectType="Opening" ObjectPlacement="0 1 0 0 -1 0 0 0 0 0 1 0 -936.444 -4267.75 -2590 1">
+								<IfcDoor id="0sBX3abT13B80okE7ECT3B" Name="M_Simple avec alignement:0700 x 2134mm:357385" ObjectType="M_Simple avec alignement:0700 x 2134mm" ObjectPlacement="0 1 0 0 -1 0 0 0 0 0 1 0 -936.444 -4267.75 -2590 1" Tag="357385" OverallHeight="2134" OverallWidth="700">
+									<IfcPropertySet xlink:href="#0sBX3abT13B80oin7ECT3B"/>
+									<IfcPropertySet xlink:href="#2xjdWRVLP8B9oARp44gREp"/>
+									<IfcDoorStyle xlink:href="#3Dj7rW6LL0NOhjeJ7vCl5A"/>
+									<IfcPresentationLayerAssignment xlink:href="#A-DOOR-____-OTLN"/>
+									<IfcMaterialList xlink:href="#IfcMaterialList_1939"/>
+								</IfcDoor>
+								<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							</IfcOpeningElement>
+							<IfcPropertySet xlink:href="#3DetulH$fDCQlU_ewug0ky"/>
+							<IfcPropertySet xlink:href="#1ZJ4oF6P5BAPboxk2VxLa7"/>
+							<IfcPropertySet xlink:href="#13hioL9oj5$wU95LDBOH43"/>
+							<IfcWallType xlink:href="#3o$KjsGRz6nfJq6Lxjg0T7"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_1637"/>
+						</IfcWallStandardCase>
+						<IfcWallStandardCase id="13hioL9oj5$wU97gvBOH4d" Name="Mur de base:Générique - 60 mm:356476" ObjectType="Mur de base:Générique - 60 mm" ObjectPlacement="-1 0 0 0 0 -1 0 0 0 0 1 0 -996.444 -3377.75 -2590 1" Tag="356476">
+							<IfcPropertySet xlink:href="#0vxTLcnjn8GvLIFIm_l0kW"/>
+							<IfcPropertySet xlink:href="#1o5zIiVXn0BhjDHW9VrI1c"/>
+							<IfcPropertySet xlink:href="#13hioL9oj5$wU95LDBOH4d"/>
+							<IfcWallType xlink:href="#3o$KjsGRz6nfJq6Lxjg0T7"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-WALL-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_1694"/>
+						</IfcWallStandardCase>
+						<IfcFlowSegment id="0vhLxtOXP6QRYADRFj1uXs" Name="Gaine ovale:Par défaut:360331" ObjectType="Gaine ovale:Par défaut" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" Tag="360331">
+							<IfcPropertySet xlink:href="#0vhLxtOXP6QRYAFa7j1uXs"/>
+							<IfcPropertySet xlink:href="#27rLSZuD546AMcLyGyLwiL"/>
+							<IfcPropertySet xlink:href="#2ViGt6RUrAxwnxndciUojt"/>
+							<IfcPropertySet xlink:href="#377PZdU5v5_R9xnVBM5wXr"/>
+							<IfcDuctSegmentType xlink:href="#1MZ7ZAV2v5ofV8v5FLsUwd"/>
+							<IfcPresentationLayerAssignment xlink:href="#M-HVAC-DUCT-OTLN"/>
+						</IfcFlowSegment>
+						<IfcSpace id="16i9B6svj5uhH4O9UNxj1o" Name="1" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" LongName="Bureau" CompositionType="ELEMENT" InteriorOrExteriorSpace="INTERNAL">
+							<IfcFurnishingElement id="1SCr5zlwf6XPBY0i$tBXpB" Name="M_Bureau:1600 x 800:360893" ObjectType="M_Bureau:1600 x 800" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 591.556 -3063.75 -2590 1" Tag="360893">
+								<IfcPropertySet xlink:href="#08TkSoqCn2Rxhnh5yAuPNX"/>
+								<IfcFurnitureType xlink:href="#0iq2C_ndH2CAudJ2JszcUf"/>
+								<IfcPresentationLayerAssignment xlink:href="#I-FURN-____-OTLN"/>
+								<IfcMaterialList xlink:href="#IfcMaterialList_3460"/>
+							</IfcFurnishingElement>
+							<IfcFurnishingElement id="1SCr5zlwf6XPBY0i$tBXyA" Name="M_Bureau:1600 x 800:361084" ObjectType="M_Bureau:1600 x 800" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 2191.56 -3063.75 -2590 1" Tag="361084">
+								<IfcPropertySet xlink:href="#1MCEhXO4v5$QMvM$3uI1Ty"/>
+								<IfcFurnitureType xlink:href="#0iq2C_ndH2CAudJ2JszcUf"/>
+								<IfcPresentationLayerAssignment xlink:href="#I-FURN-____-OTLN"/>
+								<IfcMaterialList xlink:href="#IfcMaterialList_3485"/>
+							</IfcFurnishingElement>
+							<IfcFurnishingElement id="1SCr5zlwf6XPBY0i$tBXub" Name="M_Bureau:Etudiant 1525 x 762 mm:361299" ObjectType="M_Bureau:Etudiant 1525 x 762 mm" ObjectPlacement="-1 0 0 0 0 -1 0 0 0 0 1 0 -1141.94 -2485.75 -2590 1" Tag="361299">
+								<IfcPropertySet xlink:href="#2pQZkPu29DIg5IzcUG8Acy"/>
+								<IfcFurnitureType xlink:href="#1MOQzTn01CUOnRcQTLovGb"/>
+								<IfcPresentationLayerAssignment xlink:href="#I-FURN-____-OTLN"/>
+								<IfcMaterialList xlink:href="#IfcMaterialList_4828"/>
+							</IfcFurnishingElement>
+							<IfcBuildingElementProxy id="1SCr5zlwf6XPBY0i$tBXMJ" Name="1493882975908-Potted plant revit model:1493882975908-Potted plant revit model:362725" ObjectType="1493882975908-Potted plant revit model:1493882975908-Potted plant revit model" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 68.5557 -4707.75 -2590 1" Tag="362725">
+								<IfcPropertySet xlink:href="#0dYZkxjBn6YuceABcxYM2I"/>
+								<IfcPropertySet xlink:href="#3XYnN_U41COApF$$1hT3UP"/>
+								<IfcBuildingElementProxyType xlink:href="#1SCr5zlwf6XPBY0i$tBXMd"/>
+								<IfcPresentationLayerAssignment xlink:href="#L-PLNT-____-OTLN"/>
+								<IfcMaterialList xlink:href="#IfcMaterialList_42264"/>
+							</IfcBuildingElementProxy>
+							<IfcFurnishingElement id="0Uzwbmic51xRNTauEPfpp8" Name="M_Bureau:1600 x 800:365898" ObjectType="M_Bureau:1600 x 800" ObjectPlacement="0 1 0 0 -1 0 0 0 0 0 1 0 2158.75 -2204.75 -2590 1" Tag="365898">
+								<IfcPropertySet xlink:href="#0yAdv5IXLDIRs64MxaeSOU"/>
+								<IfcFurnitureType xlink:href="#0iq2C_ndH2CAudJ2JszcUf"/>
+								<IfcPresentationLayerAssignment xlink:href="#I-FURN-____-OTLN"/>
+								<IfcMaterialList xlink:href="#IfcMaterialList_42301"/>
+							</IfcFurnishingElement>
+							<IfcFurnishingElement id="0Uzwbmic51xRNTauEPfpp9" Name="M_Bureau:1600 x 800:365899" ObjectType="M_Bureau:1600 x 800" ObjectPlacement="0 1 0 0 -1 0 0 0 0 0 1 0 1358.75 -2204.75 -2590 1" Tag="365899">
+								<IfcPropertySet xlink:href="#0mHqHGPXXCxxf1Vl7UYdsl"/>
+								<IfcFurnitureType xlink:href="#0iq2C_ndH2CAudJ2JszcUf"/>
+								<IfcPresentationLayerAssignment xlink:href="#I-FURN-____-OTLN"/>
+								<IfcMaterialList xlink:href="#IfcMaterialList_42325"/>
+							</IfcFurnishingElement>
+							<IfcPropertySet xlink:href="#3LAJfduSP46QN9AMf8Azy0"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-AREA-____-OTLN"/>
+						</IfcSpace>
+						<IfcSpace id="16i9B6svj5uhH4O9UNxj1$" Name="5" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" LongName="Local technique" CompositionType="ELEMENT" InteriorOrExteriorSpace="INTERNAL">
+							<IfcPropertySet xlink:href="#3HMdgv1293xQyUzrZI35Qv"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-AREA-____-OTLN"/>
+						</IfcSpace>
+						<IfcSpace id="16i9B6svj5uhH4O9UNxj1y" Name="4" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" LongName="Cave" CompositionType="ELEMENT" InteriorOrExteriorSpace="INTERNAL">
+							<IfcPropertySet xlink:href="#2dAuIXWX50Uh_hZZM$hRe0"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-AREA-____-OTLN"/>
+						</IfcSpace>
+						<IfcSpace id="16i9B6svj5uhH4O9UNxj1v" Name="3" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" LongName="Escalier" CompositionType="ELEMENT" InteriorOrExteriorSpace="INTERNAL">
+							<IfcPropertySet xlink:href="#3qFn8922LByOinXK4P$aoV"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-AREA-____-OTLN"/>
+						</IfcSpace>
+						<IfcSpace id="16i9B6svj5uhH4O9UNxj1c" Name="2" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2590 1" LongName="WC" CompositionType="ELEMENT" InteriorOrExteriorSpace="INTERNAL">
+							<IfcPropertySet xlink:href="#1N3BwgQeT9s9awUroZcKct"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-AREA-____-OTLN"/>
+						</IfcSpace>
+						<IfcPropertySet xlink:href="#3Zu5Bv0LOHrPC12_o6FoQQ"/>
+					</IfcBuildingStorey>
+					<IfcBuildingStorey id="24GFv2RD11lgEtgiU26l3N" Name="Rez" ObjectType="Niveau:Pointe 8 mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1" LongName="Rez" CompositionType="ELEMENT" Elevation="0">
+						<IfcSlab id="3o$KjsGRz6nfJq6Lxjg05b" Name="Sol:Générique  150 mm:352897" ObjectType="Sol:Générique  150 mm" ObjectPlacement="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1" Tag="352897" PredefinedType="FLOOR">
+							<IfcPropertySet xlink:href="#1RhO1db5P42Anhz$7D7hGb"/>
+							<IfcPropertySet xlink:href="#23iIfzfnf0c9sMRUtsoYAF"/>
+							<IfcPropertySet xlink:href="#3o$KjsGRz6nfJq4gNjg05b"/>
+							<IfcSlabType xlink:href="#3Zu5Bv0LOHrPC10026FoR_"/>
+							<IfcPresentationLayerAssignment xlink:href="#A-FLOR-____-OTLN"/>
+							<IfcMaterialLayerSetUsage xlink:href="#IfcMaterialLayerSetUsage_560"/>
+						</IfcSlab>
+						<IfcPropertySet xlink:href="#15Z0v90RiHrPC22_o6FoKR"/>
+					</IfcBuildingStorey>
+					<IfcPropertySet xlink:href="#27PCKGLxT4mxtVBOQ6mgBW"/>
+				</IfcBuilding>
+			</IfcSite>
+		</IfcProject>
+	</decomposition>
+</ifc>

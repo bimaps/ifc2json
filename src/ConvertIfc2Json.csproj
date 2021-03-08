@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release</Configurations>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include=".gitignore"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3"/>
+    <PackageReference Include="MathNet.Spatial" Version="*"/>
+    <PackageReference Include="MathNet.Numerics" Version="*"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GeometryGymIFCcore">
+      <HintPath>Assemblys\GeometryGymIFCcore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

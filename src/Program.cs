@@ -316,8 +316,10 @@ namespace ConvertIfc2Json
                                         if (bsPos.RefDirection != null) newBuildind.userData.refDirection = bsPos.RefDirection.DirectionRatios[0] + "," + bsPos.RefDirection.DirectionRatios[1] + "," + bsPos.RefDirection.DirectionRatios[2];
                                         if (bsPos.Axis != null) newBuildind.userData.axis = bsPos.Axis.DirectionRatios[0] + "," + bsPos.Axis.DirectionRatios[1] + "," + bsPos.Axis.DirectionRatios[2];
 
+                                        // if(Array.Exists(storeyElement.userData.buildingStorey, element => element.Equals(storeyElement.id)) == false){
+                                        // }
                                         outputElements.Add(storeyElement);
-
+                                    
 
                                         // IFC Space // Rooms
                                         List<IfcSpace> spaces = buildingStorey.Extract<IfcSpace>();
@@ -329,30 +331,30 @@ namespace ConvertIfc2Json
                                         List<IfcProduct> products = buildingStorey.Extract<IfcProduct>();
                                         foreach (IfcProduct product in products)
                                         {
-                                            JsonIfcElement newElement = new JsonIfcElement();
+                                            JsonIfcElement newElementProd = new JsonIfcElement();
                                             try
                                             {
                                                 if (product.GlobalId != null)
                                                 {
-                                                    newElement.id = product.GlobalId;
-                                                    newElement.userData = new JsonIfcUserData();
-                                                    newElement.userData.buildingStorey = new string[] { };
-                                                    newElement.userData.pset = new Dictionary<string, string>();
-                                                    if (product.Name != null) newElement.userData.name = product.Name; // product.LongName;
-                                                    if (product.ObjectType != null) newElement.userData.objectType = product.ObjectType;
+                                                    newElementProd.id = product.GlobalId;
+                                                    newElementProd.userData = new JsonIfcUserData();
+                                                    newElementProd.userData.buildingStorey = new string[] { };
+                                                    newElementProd.userData.pset = new Dictionary<string, string>();
+                                                    if (product.Name != null) newElementProd.userData.name = product.Name; // product.LongName;
+                                                    if (product.ObjectType != null) newElementProd.userData.objectType = product.ObjectType;
                                                     // if (product.Tag != null) newElement.userData.tag = product.Tag;
-                                                    if (product.StepClassName != null) newElement.userData.type = product.StepClassName;
+                                                    if (product.StepClassName != null) newElementProd.userData.type = product.StepClassName;
 
                                                     // Environnement element
-                                                    if (projectId != null) newElement.userData.projectId = projectId;
-                                                    if (site.GlobalId != null) newElement.userData.siteId = site.GlobalId;
-                                                    if (building.GlobalId != null) newElement.userData.buildingId = building.GlobalId;
+                                                    if (projectId != null) newElementProd.userData.projectId = projectId;
+                                                    if (site.GlobalId != null) newElementProd.userData.siteId = site.GlobalId;
+                                                    if (building.GlobalId != null) newElementProd.userData.buildingId = building.GlobalId;
                                                     List<string> sIds = new List<string>();
                                                     sIds.Add(storeyElement.id);
-                                                    newElement.userData.buildingStorey = sIds.ToArray();
+                                                    newElementProd.userData.buildingStorey = sIds.ToArray();
 
                                                     // Extract pset
-                                                    extractPset(ref newElement, product);
+                                                    extractPset(ref newElementProd, product);
 
                                                     // Link to the Space
                                                     foreach (IfcSpace space in spaces)
@@ -361,8 +363,8 @@ namespace ConvertIfc2Json
                                                         // IfcSpace
                                                         if (space.GlobalId == product.GlobalId)
                                                         {
-                                                            newElement.userData.name = space.LongName;
-                                                            newElement.userData.pset.Add("number", space.Name);
+                                                            newElementProd.userData.name = space.LongName;
+                                                            newElementProd.userData.pset.Add("number", space.Name);
 
                                                             // Create boundary
                                                             geoGeometry geom = new geoGeometry();
@@ -682,11 +684,11 @@ namespace ConvertIfc2Json
                                                             geom.type = "Polygon";
                                                             geom.coordinates = coords;
 
-                                                            newElement.boundary = new geoFeature();
-                                                            newElement.boundary.type = "Feature";
-                                                            newElement.boundary.id = null;
-                                                            newElement.boundary.properties = props;
-                                                            newElement.boundary.geometry = geom;
+                                                            newElementProd.boundary = new geoFeature();
+                                                            newElementProd.boundary.type = "Feature";
+                                                            newElementProd.boundary.id = null;
+                                                            newElementProd.boundary.properties = props;
+                                                            newElementProd.boundary.geometry = geom;
                                                         }
                                                         List<IfcBuildingElement> builingElements = space.Extract<IfcBuildingElement>();
                                                         // IFC Elements
@@ -699,7 +701,7 @@ namespace ConvertIfc2Json
                                                                 {
                                                                     if (pId.GlobalId == product.GlobalId)
                                                                     {
-                                                                        newElement.userData.spaceId = space.GlobalId;
+                                                                        newElementProd.userData.spaceId = space.GlobalId;
                                                                     }
                                                                 }
                                                                 catch (System.Exception ex)
@@ -712,8 +714,15 @@ namespace ConvertIfc2Json
                                                     }
 
                                                     // Add to list
-                                                    productsIds.Add(newElement.id);
-                                                    outputElements.Add(newElement);
+                                                    productsIds.Add(newElementProd.id);
+    
+                                                    if (newElementProd.userData.type != "IfcBuildingStorey"){
+                                                        outputElements.Add(newElementProd);
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("Error IfcBuildingStorey");
+                                                    }
 
                                                 }
 
@@ -761,6 +770,7 @@ namespace ConvertIfc2Json
 
                                                     // Add to list
                                                     outputElements.Add(newElement);
+                                                    
 
                                                 }
 

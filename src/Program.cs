@@ -12,9 +12,10 @@ namespace ConvertIfc2Json
 
     class Program
     {
-        private const int ERROR_BAD_ARGUMENTS = 0xA0;
-        private const int ERROR_ARITHMETIC_OVERFLOW = 0x216;
-        private const int ERROR_INVALID_COMMAND_LINE = 0x667;
+        // private const int ERROR_BAD_ARGUMENTS = 0xA0;
+        // private const int ERROR_ARITHMETIC_OVERFLOW = 0x216;
+        // private const int ERROR_INVALID_COMMAND_LINE = 0x667;
+        // private const int ERROR_BAD_ENVIRONMENT = 0xA;
 
 
         public static int Main(string[] args)
@@ -45,7 +46,7 @@ namespace ConvertIfc2Json
                 if (readVersion)
                 {
                     string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                    Console.WriteLine("ConvertIfc2Json : " + version + Environment.NewLine + "(.Net version " + typeof(string).Assembly.ImageRuntimeVersion + ")");
+                    Console.WriteLine("1. ConvertIfc2Json : " + version + Environment.NewLine + "(.Net version " + typeof(string).Assembly.ImageRuntimeVersion + ")");
                     return returnMessage;
                 }
 
@@ -78,7 +79,7 @@ namespace ConvertIfc2Json
                                 foreach (IfcUnit unit in project.UnitsInContext.Units)
                                 {
                                     List<IfcSIUnit> u = project.UnitsInContext.Extract<IfcSIUnit>();
-                                    Console.WriteLine(unit.StepClassName);
+                                    // Console.WriteLine("2." + unit.StepClassName);
                                 }
 
                                 // Check units
@@ -167,14 +168,16 @@ namespace ConvertIfc2Json
                         }
                         catch (System.Exception ex)
                         {
-                            Console.WriteLine("Element read error" + ex.Message);
+                            Console.WriteLine("3. Element read error " + ex.Message);
                             returnMessage = (int)ExitCode.UnknownError;
                         }
 
 
                     }
-                    catch (System.Exception)
+                    catch (System.Exception ex)
                     {
+                        
+                        Console.WriteLine("31. Write file : " + ex.Message);
                         returnMessage = (int)ExitCode.InvalidFile;
                     }
 
@@ -219,7 +222,7 @@ namespace ConvertIfc2Json
                                 }
                                 catch (System.Exception ex)
                                 {
-                                    Console.WriteLine("Site pset error : " + ex.Message);
+                                    Console.WriteLine("4. Site pset error : " + ex.Message);
                                 }
 
                                 // Add Matrix
@@ -266,24 +269,26 @@ namespace ConvertIfc2Json
                                         // building Address
                                         try
                                         {
-                                            if (building.BuildingAddress.AddressLines.Count > 0)
-                                            {
-                                                for (int i = 0; i < building.BuildingAddress.AddressLines.Count; i++)
+                                            if (building.BuildingAddress != null){
+                                                if (building.BuildingAddress.AddressLines.Count > 0)
                                                 {
-                                                    double index = i + 1;
-                                                    newBuildind.userData.pset.Add("AddressLine" + index.ToString(), building.BuildingAddress.AddressLines[i]);
+                                                    for (int i = 0; i < building.BuildingAddress.AddressLines.Count; i++)
+                                                    {
+                                                        double index = i + 1;
+                                                        newBuildind.userData.pset.Add("AddressLine" + index.ToString(), building.BuildingAddress.AddressLines[i]);
+                                                    }
                                                 }
+                                                if (building.BuildingAddress.PostalBox != "") newBuildind.userData.pset.Add("PostalBox", building.BuildingAddress.PostalBox);
+                                                if (building.BuildingAddress.PostalCode != "") newBuildind.userData.pset.Add("PostalCode", building.BuildingAddress.PostalCode);
+                                                if (building.BuildingAddress.Town != "") newBuildind.userData.pset.Add("Town", building.BuildingAddress.Town);
+                                                if (building.BuildingAddress.Region != "") newBuildind.userData.pset.Add("Region", building.BuildingAddress.Region);
+                                                if (building.BuildingAddress.Country != "") newBuildind.userData.pset.Add("Country", building.BuildingAddress.Country);
                                             }
-                                            if (building.BuildingAddress.PostalBox != "") newBuildind.userData.pset.Add("PostalBox", building.BuildingAddress.PostalBox);
-                                            if (building.BuildingAddress.PostalCode != "") newBuildind.userData.pset.Add("PostalCode", building.BuildingAddress.PostalCode);
-                                            if (building.BuildingAddress.Town != "") newBuildind.userData.pset.Add("Town", building.BuildingAddress.Town);
-                                            if (building.BuildingAddress.Region != "") newBuildind.userData.pset.Add("Region", building.BuildingAddress.Region);
-                                            if (building.BuildingAddress.Country != "") newBuildind.userData.pset.Add("Country", building.BuildingAddress.Country);
 
                                         }
                                         catch (System.Exception ex)
                                         {
-                                            Console.WriteLine(ex.Message);
+                                            Console.WriteLine("5. Buildind Adresse (id: " + newBuildind.id + ") : " + ex.Message);
                                         }
 
 
@@ -319,13 +324,14 @@ namespace ConvertIfc2Json
                                         // if(Array.Exists(storeyElement.userData.buildingStorey, element => element.Equals(storeyElement.id)) == false){
                                         // }
                                         outputElements.Add(storeyElement);
-                                    
+
 
                                         // IFC Space // Rooms
                                         List<IfcSpace> spaces = buildingStorey.Extract<IfcSpace>();
 
                                         // Check IfcProduct Ids
                                         List<string> productsIds = new List<string>();
+                                        double productCounter = 0;
 
                                         // IfcProduct
                                         List<IfcProduct> products = buildingStorey.Extract<IfcProduct>();
@@ -355,83 +361,238 @@ namespace ConvertIfc2Json
 
                                                     // Extract pset
                                                     extractPset(ref newElementProd, product);
+                                                    double spaceCounter = 0;
 
                                                     // Link to the Space
                                                     foreach (IfcSpace space in spaces)
                                                     {
 
-                                                        // IfcSpace
-                                                        if (space.GlobalId == product.GlobalId)
+                                                        try
                                                         {
-                                                            newElementProd.userData.name = space.LongName;
-                                                            newElementProd.userData.pset.Add("number", space.Name);
 
-                                                            // Create boundary
-                                                            geoGeometry geom = new geoGeometry();
-                                                            IList<IList<IList<double>>> coords = new List<IList<IList<double>>>();
-                                                            Dictionary<string, string> props = new Dictionary<string, string>();
-                                                            string height = "0.0";
-                                                            string elevation = "0.0";
-
-
-                                                            // Representation
-                                                            if (space.Representation.Representations.Count > 0)
+                                                            // IfcSpace
+                                                            if (space.GlobalId == product.GlobalId)
                                                             {
+                                                                try
+                                                                {
+                                                                    newElementProd.userData.name = space.LongName;
+                                                                }
+                                                                catch (NotSupportedException exEncode)
+                                                                {
+                                                                    newElementProd.userData.name = space.Name;
+                                                                    Console.WriteLine("15. Space Name read error (id: " + space.GlobalId + ") " + exEncode.Message); // returnMessage = (int)ExitCode.NodataIsAvailableForEncoding;
+                                                                }
+                                                                catch (System.Exception ex)
+                                                                {
+                                                                    Console.WriteLine("29. Space Name LongName read error" + ex.Message);
+                                                                }
 
-                                                                foreach (IfcRepresentationItem item in space.Representation.Representations[0].Items)
+                                                                newElementProd.userData.pset.Add("number", space.Name);
+
+                                                                // Create boundary
+                                                                geoGeometry geom = new geoGeometry();
+                                                                IList<IList<IList<double>>> coords = new List<IList<IList<double>>>();
+                                                                Dictionary<string, string> props = new Dictionary<string, string>();
+                                                                string height = "0.0";
+                                                                string elevation = "0.0";
+
+
+                                                                // Representation
+                                                                if (space.Representation.Representations.Count > 0)
                                                                 {
 
-                                                                    try
+                                                                    foreach (IfcRepresentationItem item in space.Representation.Representations[0].Items)
                                                                     {
 
-                                                                        if (item.StepClassName == "IfcExtrudedAreaSolid")
+                                                                        try
                                                                         {
-                                                                            IfcExtrudedAreaSolid areaSolid = item as IfcExtrudedAreaSolid;
-                                                                            IfcAxis2Placement3D pos = areaSolid.Position;
-                                                                            Point3D loc = new Point3D(pos.Location.Coordinates[0], pos.Location.Coordinates[1], pos.Location.Coordinates[2]);
-                                                                            height = (areaSolid.Depth / SCALE).ToString();
-                                                                            elevation = (buildingStorey.Elevation / SCALE).ToString();
-                                                                            //Matrix<double> mat4x4 = Matrix<double>.Build.Dense(4,4);
-                                                                            //Matrix<double> mat90 = Matrix3D.RotationAroundZAxis(MathNet.Spatial.Units.Angle.FromDegrees(90));
-                                                                            // mat4x4 = getMatrix(pos);
 
-                                                                            if (areaSolid.SweptArea.StepClassName == "IfcArbitraryClosedProfileDef")
-                                                                            { // Polyline
-                                                                                IfcArbitraryClosedProfileDef arbitraryClosedProfiles = areaSolid.SweptArea as IfcArbitraryClosedProfileDef;
-                                                                                IList<IList<double>> polyExt = new List<IList<double>>();
+                                                                            if (item.StepClassName == "IfcExtrudedAreaSolid")
+                                                                            {
+                                                                                IfcExtrudedAreaSolid areaSolid = item as IfcExtrudedAreaSolid;
+                                                                                IfcAxis2Placement3D pos = areaSolid.Position;
+                                                                                Point3D loc = new Point3D(pos.Location.Coordinates[0], pos.Location.Coordinates[1], pos.Location.Coordinates[2]);
+                                                                                height = (areaSolid.Depth / SCALE).ToString();
+                                                                                elevation = (buildingStorey.Elevation / SCALE).ToString();
+                                                                                //Matrix<double> mat4x4 = Matrix<double>.Build.Dense(4,4);
+                                                                                //Matrix<double> mat90 = Matrix3D.RotationAroundZAxis(MathNet.Spatial.Units.Angle.FromDegrees(90));
+                                                                                // mat4x4 = getMatrix(pos);
 
-                                                                                if (arbitraryClosedProfiles.OuterCurve.StepClassName == "IfcIndexedPolyCurve")
-                                                                                {
-                                                                                    IfcIndexedPolyCurve outerCurve = arbitraryClosedProfiles.OuterCurve as IfcIndexedPolyCurve;
-                                                                                    IfcCartesianPointList2D points = outerCurve.Points as IfcCartesianPointList2D;
-                                                                                    foreach (double[] pts in points.CoordList)
+                                                                                if (areaSolid.SweptArea.StepClassName == "IfcArbitraryClosedProfileDef")
+                                                                                { // Polyline
+                                                                                    IfcArbitraryClosedProfileDef arbitraryClosedProfiles = areaSolid.SweptArea as IfcArbitraryClosedProfileDef;
+                                                                                    IList<IList<double>> polyExt = new List<IList<double>>();
+
+                                                                                    if (arbitraryClosedProfiles.OuterCurve.StepClassName == "IfcIndexedPolyCurve")
                                                                                     {
-                                                                                        if (pts.Length >= 2)
+                                                                                        IfcIndexedPolyCurve outerCurve = arbitraryClosedProfiles.OuterCurve as IfcIndexedPolyCurve;
+                                                                                        IfcCartesianPointList2D points = outerCurve.Points as IfcCartesianPointList2D;
+                                                                                        foreach (double[] pts in points.CoordList)
                                                                                         {
-                                                                                            try
+                                                                                            if (pts.Length >= 2)
                                                                                             {
-                                                                                                IList<double> xy = new List<double>();
-                                                                                                xy.Add(pts[0] / SCALE);
-                                                                                                xy.Add(pts[1] / SCALE);
-                                                                                                polyExt.Add(xy);
+                                                                                                try
+                                                                                                {
+                                                                                                    IList<double> xy = new List<double>();
+                                                                                                    xy.Add(pts[0] / SCALE);
+                                                                                                    xy.Add(pts[1] / SCALE);
+                                                                                                    polyExt.Add(xy);
+                                                                                                }
+                                                                                                catch (System.Exception exTransf)
+                                                                                                {
+                                                                                                    Console.WriteLine("6." + exTransf.Message);
+                                                                                                }
+
                                                                                             }
-                                                                                            catch (System.Exception exTransf)
+
+                                                                                        }
+
+                                                                                    }
+                                                                                    else
+                                                                                    {
+
+                                                                                        List<IfcPolyline> poly = arbitraryClosedProfiles.OuterCurve.Extract<IfcPolyline>();
+
+                                                                                        if (poly.Count > 0 && poly[0].Points.Count > 0)
+                                                                                        {
+                                                                                            foreach (IfcCartesianPoint pt in poly[0].Points)
                                                                                             {
-                                                                                                Console.WriteLine(exTransf.Message);
+
+                                                                                                if (pt.Coordinates.Count >= 2)
+                                                                                                {
+                                                                                                    try
+                                                                                                    {
+                                                                                                        IList<double> xy = new List<double>();
+                                                                                                        xy.Add(pt.Coordinates[0] / SCALE);
+                                                                                                        xy.Add(pt.Coordinates[1] / SCALE);
+                                                                                                        polyExt.Add(xy);
+                                                                                                    }
+                                                                                                    catch (System.Exception exTransf)
+                                                                                                    {
+                                                                                                        Console.WriteLine("7. " + exTransf.Message);
+                                                                                                    }
+
+                                                                                                }
                                                                                             }
 
                                                                                         }
 
                                                                                     }
 
+
+                                                                                    coords.Add(polyExt);
+
+                                                                                    props.Add("location", pos.Location.Coordinates[0] / SCALE + "," + pos.Location.Coordinates[1] / SCALE + "," + pos.Location.Coordinates[2] / SCALE);
+                                                                                    if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
+                                                                                    if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
+
+                                                                                    // props.Add("StepClassName",areaSolid.SweptArea.StepClassName);
+
+
                                                                                 }
-                                                                                else
+                                                                                else if (areaSolid.SweptArea.StepClassName == "IfcRectangleProfileDef") // Rectangle
                                                                                 {
+                                                                                    List<IfcRectangleProfileDef> rectangleProfile = areaSolid.SweptArea.Extract<IfcRectangleProfileDef>();
 
-                                                                                    List<IfcPolyline> poly = arbitraryClosedProfiles.OuterCurve.Extract<IfcPolyline>();
-
-                                                                                    if (poly.Count > 0 && poly[0].Points.Count > 0)
+                                                                                    if (rectangleProfile.Count > 0)
                                                                                     {
+                                                                                        if (rectangleProfile[0].XDim > 0.0000001 && rectangleProfile[0].YDim > 0.0000001)
+                                                                                        {
+                                                                                            //IList<IList<IList<double>>> coordinates
+
+                                                                                            if (rectangleProfile[0].Position.Location.Coordinates.Count >= 2)
+                                                                                            {
+                                                                                                try
+                                                                                                {
+                                                                                                    Point3D lm = new Point3D(0, 0, 0);
+                                                                                                    // Point3D lm = new Point3D(loc.X,loc.Y,loc.Z);
+                                                                                                    // Matrix<double> m = Matrix<double>.Build.Dense(4, 1, new[] {lm.X, lm.Y, lm.Z, 1 });
+                                                                                                    // lm = lm.TransformBy(mat4x4);
+                                                                                                    double XDim = rectangleProfile[0].XDim / 2;
+                                                                                                    double YDim = rectangleProfile[0].YDim / 2;
+
+                                                                                                    // Left-Bottom
+                                                                                                    IList<double> lb = new List<double>();
+                                                                                                    Point3D lbP = new Point3D(lm.X - XDim, lm.Y - YDim, lm.Z);
+                                                                                                    lb.Add(lbP.X / SCALE);
+                                                                                                    lb.Add(lbP.Y / SCALE);
+                                                                                                    // right-Bottom
+                                                                                                    IList<double> rb = new List<double>();
+                                                                                                    Point3D rbP = new Point3D(lm.X + XDim, lm.Y - YDim, lm.Z);
+                                                                                                    rb.Add(rbP.X / SCALE);
+                                                                                                    rb.Add(rbP.Y / SCALE);
+                                                                                                    // right-top
+                                                                                                    IList<double> rt = new List<double>();
+                                                                                                    Point3D rtP = new Point3D(lm.X + XDim, lm.Y + YDim, lm.Z);
+                                                                                                    rt.Add(rtP.X / SCALE);
+                                                                                                    rt.Add(rtP.Y / SCALE);
+                                                                                                    // left-top
+                                                                                                    IList<double> lt = new List<double>();
+                                                                                                    Point3D ltP = new Point3D(lm.X - XDim, lm.Y + YDim, lm.Z);
+                                                                                                    lt.Add(ltP.X / SCALE);
+                                                                                                    lt.Add(ltP.Y / SCALE);
+
+                                                                                                    IList<IList<double>> polyExt = new List<IList<double>>();
+                                                                                                    polyExt.Add(lb);
+                                                                                                    polyExt.Add(rb);
+                                                                                                    polyExt.Add(rt);
+                                                                                                    polyExt.Add(lt);
+                                                                                                    polyExt.Add(lb);
+                                                                                                    coords.Add(polyExt);
+                                                                                                    props.Add("location", pos.Location.Coordinates[0] / SCALE + "," + pos.Location.Coordinates[1] / SCALE + "," + pos.Location.Coordinates[2] / SCALE);
+                                                                                                    if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
+                                                                                                    if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
+
+                                                                                                    // props.Add("StepClassName",areaSolid.SweptArea.StepClassName);
+
+                                                                                                }
+                                                                                                catch (System.Exception exMatrixTransf)
+                                                                                                {
+                                                                                                    Console.WriteLine("8. " + exMatrixTransf.Message);
+                                                                                                }
+
+
+                                                                                            }
+                                                                                        }
+                                                                                    }
+
+                                                                                }
+                                                                                else if (areaSolid.SweptArea.StepClassName == "IfcArbitraryProfileDefWithVoids") // 
+                                                                                {
+                                                                                    // OuterCurve [IfcCurve]
+                                                                                    IfcArbitraryProfileDefWithVoids arbitraryProfileDefWithVoids = areaSolid.SweptArea as IfcArbitraryProfileDefWithVoids;
+                                                                                    IfcArbitraryClosedProfileDef arbitraryClosedProfiles = areaSolid.SweptArea as IfcArbitraryClosedProfileDef;
+                                                                                    IList<IList<double>> polyExt = new List<IList<double>>();
+
+                                                                                    if (arbitraryProfileDefWithVoids.OuterCurve.StepClassName == "IfcIndexedPolyCurve")
+                                                                                    {
+                                                                                        IfcIndexedPolyCurve outerCurve = arbitraryClosedProfiles.OuterCurve as IfcIndexedPolyCurve;
+                                                                                        IfcCartesianPointList2D points = outerCurve.Points as IfcCartesianPointList2D;
+                                                                                        foreach (double[] pts in points.CoordList)
+                                                                                        {
+                                                                                            if (pts.Length >= 2)
+                                                                                            {
+                                                                                                try
+                                                                                                {
+                                                                                                    IList<double> xy = new List<double>();
+                                                                                                    xy.Add(pts[0] / SCALE);
+                                                                                                    xy.Add(pts[1] / SCALE);
+                                                                                                    polyExt.Add(xy);
+                                                                                                }
+                                                                                                catch (System.Exception exTransf)
+                                                                                                {
+                                                                                                    Console.WriteLine("9. " + exTransf.Message);
+                                                                                                }
+
+                                                                                            }
+
+                                                                                        }
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        //IList<IList<IList<double>>> coordinates
+                                                                                        List<IfcPolyline> poly = arbitraryProfileDefWithVoids.OuterCurve.Extract<IfcPolyline>();
+
                                                                                         foreach (IfcCartesianPoint pt in poly[0].Points)
                                                                                         {
 
@@ -440,298 +601,178 @@ namespace ConvertIfc2Json
                                                                                                 try
                                                                                                 {
                                                                                                     IList<double> xy = new List<double>();
-                                                                                                    xy.Add(pt.Coordinates[0] / SCALE);
-                                                                                                    xy.Add(pt.Coordinates[1] / SCALE);
+                                                                                                    Point3D p = new Point3D(pt.Coordinates[0], pt.Coordinates[1], 0);
+                                                                                                    xy.Add(p.X / SCALE); //+ loc.X);
+                                                                                                    xy.Add(p.Y / SCALE); // + loc.Y);
                                                                                                     polyExt.Add(xy);
                                                                                                 }
                                                                                                 catch (System.Exception exTransf)
                                                                                                 {
-                                                                                                    Console.WriteLine(exTransf.Message);
+                                                                                                    Console.WriteLine("10. " + exTransf.Message);
                                                                                                 }
 
                                                                                             }
                                                                                         }
-
                                                                                     }
 
-                                                                                }
+                                                                                    coords.Add(polyExt);
 
+                                                                                    props.Add("location", pos.Location.Coordinates[0] / SCALE + "," + pos.Location.Coordinates[1] / SCALE + "," + pos.Location.Coordinates[2] / SCALE);
+                                                                                    if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
+                                                                                    if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
 
-                                                                                coords.Add(polyExt);
-
-                                                                                props.Add("location", pos.Location.Coordinates[0] / SCALE + "," + pos.Location.Coordinates[1] / SCALE + "," + pos.Location.Coordinates[2] / SCALE);
-                                                                                if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
-                                                                                if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
-
-                                                                                // props.Add("StepClassName",areaSolid.SweptArea.StepClassName);
-
-
-                                                                            }
-                                                                            else if (areaSolid.SweptArea.StepClassName == "IfcRectangleProfileDef") // Rectangle
-                                                                            {
-                                                                                List<IfcRectangleProfileDef> rectangleProfile = areaSolid.SweptArea.Extract<IfcRectangleProfileDef>();
-
-                                                                                if (rectangleProfile.Count > 0)
-                                                                                {
-                                                                                    if (rectangleProfile[0].XDim > 0.0000001 && rectangleProfile[0].YDim > 0.0000001)
-                                                                                    {
-                                                                                        //IList<IList<IList<double>>> coordinates
-
-                                                                                        if (rectangleProfile[0].Position.Location.Coordinates.Count >= 2)
-                                                                                        {
-                                                                                            try
-                                                                                            {
-                                                                                                Point3D lm = new Point3D(0, 0, 0);
-                                                                                                // Point3D lm = new Point3D(loc.X,loc.Y,loc.Z);
-                                                                                                // Matrix<double> m = Matrix<double>.Build.Dense(4, 1, new[] {lm.X, lm.Y, lm.Z, 1 });
-                                                                                                // lm = lm.TransformBy(mat4x4);
-                                                                                                double XDim = rectangleProfile[0].XDim / 2;
-                                                                                                double YDim = rectangleProfile[0].YDim / 2;
-
-                                                                                                // Left-Bottom
-                                                                                                IList<double> lb = new List<double>();
-                                                                                                Point3D lbP = new Point3D(lm.X - XDim, lm.Y - YDim, lm.Z);
-                                                                                                lb.Add(lbP.X / SCALE);
-                                                                                                lb.Add(lbP.Y / SCALE);
-                                                                                                // right-Bottom
-                                                                                                IList<double> rb = new List<double>();
-                                                                                                Point3D rbP = new Point3D(lm.X + XDim, lm.Y - YDim, lm.Z);
-                                                                                                rb.Add(rbP.X / SCALE);
-                                                                                                rb.Add(rbP.Y / SCALE);
-                                                                                                // right-top
-                                                                                                IList<double> rt = new List<double>();
-                                                                                                Point3D rtP = new Point3D(lm.X + XDim, lm.Y + YDim, lm.Z);
-                                                                                                rt.Add(rtP.X / SCALE);
-                                                                                                rt.Add(rtP.Y / SCALE);
-                                                                                                // left-top
-                                                                                                IList<double> lt = new List<double>();
-                                                                                                Point3D ltP = new Point3D(lm.X - XDim, lm.Y + YDim, lm.Z);
-                                                                                                lt.Add(ltP.X / SCALE);
-                                                                                                lt.Add(ltP.Y / SCALE);
-
-                                                                                                IList<IList<double>> polyExt = new List<IList<double>>();
-                                                                                                polyExt.Add(lb);
-                                                                                                polyExt.Add(rb);
-                                                                                                polyExt.Add(rt);
-                                                                                                polyExt.Add(lt);
-                                                                                                polyExt.Add(lb);
-                                                                                                coords.Add(polyExt);
-                                                                                                props.Add("location", pos.Location.Coordinates[0] / SCALE + "," + pos.Location.Coordinates[1] / SCALE + "," + pos.Location.Coordinates[2] / SCALE);
-                                                                                                if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
-                                                                                                if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
-
-                                                                                                // props.Add("StepClassName",areaSolid.SweptArea.StepClassName);
-
-                                                                                            }
-                                                                                            catch (System.Exception exMatrixTransf)
-                                                                                            {
-                                                                                                Console.WriteLine(exMatrixTransf.Message);
-                                                                                            }
-
-
-                                                                                        }
-                                                                                    }
                                                                                 }
 
                                                                             }
-                                                                            else if (areaSolid.SweptArea.StepClassName == "IfcArbitraryProfileDefWithVoids") // 
-                                                                            {
-                                                                                // OuterCurve [IfcCurve]
-                                                                                IfcArbitraryProfileDefWithVoids arbitraryProfileDefWithVoids = areaSolid.SweptArea as IfcArbitraryProfileDefWithVoids;
-                                                                                IfcArbitraryClosedProfileDef arbitraryClosedProfiles = areaSolid.SweptArea as IfcArbitraryClosedProfileDef;
-                                                                                IList<IList<double>> polyExt = new List<IList<double>>();
+                                                                            else if (item.StepClassName == "IfcFacetedBrep-XXX")  // TODO : Fix export 3D Object
+                                                                            {                                                     // https://standards.buildingsmart.org/IFC/RELEASE/IFC4_1/FINAL/HTML/schema/ifcgeometricmodelresource/lexical/ifcfacetedbrep.htm
 
-                                                                                if (arbitraryProfileDefWithVoids.OuterCurve.StepClassName == "IfcIndexedPolyCurve")
+                                                                                List<IfcFacetedBrep> facetedBreps = item.Extract<IfcFacetedBrep>();
+                                                                                if (facetedBreps.Count > 0)
                                                                                 {
-                                                                                    IfcIndexedPolyCurve outerCurve = arbitraryClosedProfiles.OuterCurve as IfcIndexedPolyCurve;
-                                                                                    IfcCartesianPointList2D points = outerCurve.Points as IfcCartesianPointList2D;
-                                                                                    foreach (double[] pts in points.CoordList)
-                                                                                    {
-                                                                                        if (pts.Length >= 2)
-                                                                                        {
-                                                                                            try
-                                                                                            {
-                                                                                                IList<double> xy = new List<double>();
-                                                                                                xy.Add(pts[0] / SCALE);
-                                                                                                xy.Add(pts[1] / SCALE);
-                                                                                                polyExt.Add(xy);
-                                                                                            }
-                                                                                            catch (System.Exception exTransf)
-                                                                                            {
-                                                                                                Console.WriteLine(exTransf.Message);
-                                                                                            }
-
-                                                                                        }
-
-                                                                                    }
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    //IList<IList<IList<double>>> coordinates
-                                                                                    List<IfcPolyline> poly = arbitraryProfileDefWithVoids.OuterCurve.Extract<IfcPolyline>();
-
-                                                                                    foreach (IfcCartesianPoint pt in poly[0].Points)
+                                                                                    IfcFacetedBrep facetedBrep = facetedBreps[0];
+                                                                                    //IfcAxis2Placement3D pos = facetedBrep.Position;
+                                                                                    //Point3D loc = new Point3D(pos.Location.Coordinates[0], pos.Location.Coordinates[1], pos.Location.Coordinates[2]);
+                                                                                    //height = (facetedBrep.Depth / SCALE).ToString();
+                                                                                    elevation = (buildingStorey.Elevation / SCALE).ToString();
+                                                                                    if (facetedBrep.Outer.StepClassName == "IfcClosedShell")
                                                                                     {
 
-                                                                                        if (pt.Coordinates.Count >= 2)
+                                                                                        if (facetedBrep.Outer.CfsFaces.Count > 0) // 
                                                                                         {
-                                                                                            try
+                                                                                            // CfsFaces[].Bounds[IfcFaceBound].Bound.Polgon[IfcCartesianPoint].Coordinates[3]
+                                                                                            // OuterCurve [IfcCurve]
+                                                                                            foreach (IfcFace cfsFace in facetedBrep.Outer.CfsFaces)
                                                                                             {
-                                                                                                IList<double> xy = new List<double>();
-                                                                                                Point3D p = new Point3D(pt.Coordinates[0], pt.Coordinates[1], 0);
-                                                                                                xy.Add(p.X / SCALE); //+ loc.X);
-                                                                                                xy.Add(p.Y / SCALE); // + loc.Y);
-                                                                                                polyExt.Add(xy);
-                                                                                            }
-                                                                                            catch (System.Exception exTransf)
-                                                                                            {
-                                                                                                Console.WriteLine(exTransf.Message);
-                                                                                            }
-
-                                                                                        }
-                                                                                    }
-                                                                                }
-
-                                                                                coords.Add(polyExt);
-
-                                                                                props.Add("location", pos.Location.Coordinates[0] / SCALE + "," + pos.Location.Coordinates[1] / SCALE + "," + pos.Location.Coordinates[2] / SCALE);
-                                                                                if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
-                                                                                if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
-
-                                                                            }
-
-                                                                        }
-                                                                        else if (item.StepClassName == "IfcFacetedBrep-XXX")  // TODO : Fix export 3D Object
-                                                                        {                                                     // https://standards.buildingsmart.org/IFC/RELEASE/IFC4_1/FINAL/HTML/schema/ifcgeometricmodelresource/lexical/ifcfacetedbrep.htm
-
-                                                                            List<IfcFacetedBrep> facetedBreps = item.Extract<IfcFacetedBrep>();
-                                                                            if (facetedBreps.Count > 0)
-                                                                            {
-                                                                                IfcFacetedBrep facetedBrep = facetedBreps[0];
-                                                                                //IfcAxis2Placement3D pos = facetedBrep.Position;
-                                                                                //Point3D loc = new Point3D(pos.Location.Coordinates[0], pos.Location.Coordinates[1], pos.Location.Coordinates[2]);
-                                                                                //height = (facetedBrep.Depth / SCALE).ToString();
-                                                                                elevation = (buildingStorey.Elevation / SCALE).ToString();
-                                                                                if (facetedBrep.Outer.StepClassName == "IfcClosedShell")
-                                                                                {
-
-                                                                                    if (facetedBrep.Outer.CfsFaces.Count > 0) // 
-                                                                                    {
-                                                                                        // CfsFaces[].Bounds[IfcFaceBound].Bound.Polgon[IfcCartesianPoint].Coordinates[3]
-                                                                                        // OuterCurve [IfcCurve]
-                                                                                        foreach (IfcFace cfsFace in facetedBrep.Outer.CfsFaces)
-                                                                                        {
-                                                                                            foreach (IfcFaceBound faceBound in cfsFace.Bounds)
-                                                                                            {
-                                                                                                IList<IList<double>> polyExt = new List<IList<double>>();
-                                                                                                if (faceBound.Bound.StepClassName == "IfcPolyLoop")
+                                                                                                foreach (IfcFaceBound faceBound in cfsFace.Bounds)
                                                                                                 {
-                                                                                                    IfcPolyLoop polyLoop = faceBound.Bound as IfcPolyLoop;
-                                                                                                    foreach (IfcCartesianPoint pt in polyLoop.Polygon)
+                                                                                                    IList<IList<double>> polyExt = new List<IList<double>>();
+                                                                                                    if (faceBound.Bound.StepClassName == "IfcPolyLoop")
                                                                                                     {
-                                                                                                        IList<double> xy = new List<double>();
-                                                                                                        xy.Add(pt.Coordinates[0] / SCALE); //+ loc.X);
-                                                                                                        xy.Add(pt.Coordinates[1] / SCALE); // + loc.Y);
-                                                                                                        xy.Add(pt.Coordinates[2] / SCALE); // + loc.YZ;
-                                                                                                        polyExt.Add(xy);
+                                                                                                        IfcPolyLoop polyLoop = faceBound.Bound as IfcPolyLoop;
+                                                                                                        foreach (IfcCartesianPoint pt in polyLoop.Polygon)
+                                                                                                        {
+                                                                                                            IList<double> xy = new List<double>();
+                                                                                                            xy.Add(pt.Coordinates[0] / SCALE); //+ loc.X);
+                                                                                                            xy.Add(pt.Coordinates[1] / SCALE); // + loc.Y);
+                                                                                                            xy.Add(pt.Coordinates[2] / SCALE); // + loc.YZ;
+                                                                                                            polyExt.Add(xy);
+                                                                                                        }
                                                                                                     }
+
+                                                                                                    // ERREUR OBJET 3D
+                                                                                                    // TODO : Fix export 3D Object
+                                                                                                    // coords.Add(polyExt);
                                                                                                 }
 
-                                                                                                // ERREUR OBJET 3D
-                                                                                                // TODO : Fix export 3D Object
-                                                                                                // coords.Add(polyExt);
                                                                                             }
+
+                                                                                            // props.Add("location", pos.Location.Coordinates[0] / SCALE + "," + pos.Location.Coordinates[1] / SCALE + "," + pos.Location.Coordinates[2] / SCALE);
+                                                                                            // if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
+                                                                                            // if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
 
                                                                                         }
 
-                                                                                        // props.Add("location", pos.Location.Coordinates[0] / SCALE + "," + pos.Location.Coordinates[1] / SCALE + "," + pos.Location.Coordinates[2] / SCALE);
-                                                                                        // if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
-                                                                                        // if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
 
                                                                                     }
-
-
                                                                                 }
+
+
+
+
                                                                             }
 
 
 
-
                                                                         }
-
-
+                                                                        catch (System.Exception exRepresentationItem)
+                                                                        {
+                                                                            Console.WriteLine("11. Element read error exRepresentationItem" + exRepresentationItem.Message);
+                                                                            returnMessage = (int)ExitCode.UnknownError;
+                                                                        }
 
                                                                     }
-                                                                    catch (System.Exception exRepresentationItem)
+
+
+                                                                }
+
+                                                                if (coords.Count == 0)
+                                                                {
+                                                                    // Console.WriteLine("12. " + coords.Count);
+                                                                }
+
+                                                                props.Add("height", height);
+                                                                props.Add("elevation", elevation);
+
+                                                                geom.type = "Polygon";
+                                                                geom.coordinates = coords;
+
+                                                                newElementProd.boundary = new geoFeature();
+                                                                newElementProd.boundary.type = "Feature";
+                                                                newElementProd.boundary.id = null;
+                                                                newElementProd.boundary.properties = props;
+                                                                newElementProd.boundary.geometry = geom;
+                                                            }
+                                                            List<IfcBuildingElement> builingElements = space.Extract<IfcBuildingElement>();
+                                                            // IFC Elements
+                                                            foreach (IfcBuildingElement bElement in builingElements)
+                                                            {
+                                                                IfcRelContainedInSpatialStructure productIds = bElement.ContainedInStructure;
+                                                                foreach (IfcProduct pId in productIds.RelatedElements)
+                                                                {
+                                                                    try
                                                                     {
-                                                                        Console.WriteLine("Element read error exRepresentationItem" + exRepresentationItem.Message);
+                                                                        if (pId.GlobalId == product.GlobalId)
+                                                                        {
+                                                                            newElementProd.userData.spaceId = space.GlobalId;
+                                                                        }
+                                                                    }
+                                                                    catch (System.Exception ex)
+                                                                    {
+                                                                        Console.WriteLine("13. Element read error" + ex.Message);
                                                                         returnMessage = (int)ExitCode.UnknownError;
                                                                     }
-
                                                                 }
-
-
                                                             }
 
-                                                            if (coords.Count == 0)
-                                                            {
-                                                                Console.WriteLine(coords.Count);
-                                                            }
 
-                                                            props.Add("height", height);
-                                                            props.Add("elevation", elevation);
-
-                                                            geom.type = "Polygon";
-                                                            geom.coordinates = coords;
-
-                                                            newElementProd.boundary = new geoFeature();
-                                                            newElementProd.boundary.type = "Feature";
-                                                            newElementProd.boundary.id = null;
-                                                            newElementProd.boundary.properties = props;
-                                                            newElementProd.boundary.geometry = geom;
                                                         }
-                                                        List<IfcBuildingElement> builingElements = space.Extract<IfcBuildingElement>();
-                                                        // IFC Elements
-                                                        foreach (IfcBuildingElement bElement in builingElements)
+
+                                                        catch (System.Exception ex)
                                                         {
-                                                            IfcRelContainedInSpatialStructure productIds = bElement.ContainedInStructure;
-                                                            foreach (IfcProduct pId in productIds.RelatedElements)
-                                                            {
-                                                                try
-                                                                {
-                                                                    if (pId.GlobalId == product.GlobalId)
-                                                                    {
-                                                                        newElementProd.userData.spaceId = space.GlobalId;
-                                                                    }
-                                                                }
-                                                                catch (System.Exception ex)
-                                                                {
-                                                                    Console.WriteLine("Element read error" + ex.Message);
-                                                                    returnMessage = (int)ExitCode.UnknownError;
-                                                                }
-                                                            }
+                                                            Console.WriteLine("16. Element read error" + ex.Message);
+                                                            returnMessage = (int)ExitCode.UnknownError;
                                                         }
+
+                                                        spaceCounter += 1;
                                                     }
 
                                                     // Add to list
                                                     productsIds.Add(newElementProd.id);
-    
-                                                    if (newElementProd.userData.type != "IfcBuildingStorey"){
+
+                                                    if (newElementProd.userData.type != "IfcBuildingStorey")
+                                                    {
                                                         outputElements.Add(newElementProd);
                                                     }
                                                     else
                                                     {
-                                                        Console.WriteLine("Error IfcBuildingStorey");
+                                                        // Console.WriteLine("14. Error IfcBuildingStorey");
                                                     }
 
                                                 }
 
                                             }
+                                            catch (NotSupportedException exEncode)
+                                            {
+                                                Console.WriteLine("28. Name read error (product counter: " + productCounter+ ") " + exEncode.Message); // returnMessage = (int)ExitCode.NodataIsAvailableForEncoding;
+                                            }
                                             catch (System.Exception ex)
                                             {
-                                                Console.WriteLine("Element read error" + ex.Message);
+                                                Console.WriteLine("29. Element read error" + ex.Message);
                                                 returnMessage = (int)ExitCode.UnknownError;
                                             }
+
+                                            productCounter += 1;
                                         }
 
 
@@ -770,14 +811,14 @@ namespace ConvertIfc2Json
 
                                                     // Add to list
                                                     outputElements.Add(newElement);
-                                                    
+
 
                                                 }
 
                                             }
                                             catch (System.Exception ex)
                                             {
-                                                Console.WriteLine("Element read error" + ex.Message);
+                                                Console.WriteLine("17. Element read error" + ex.Message);
                                                 returnMessage = (int)ExitCode.UnknownError;
                                             }
 
@@ -799,7 +840,7 @@ namespace ConvertIfc2Json
                         }
                         catch (System.Exception ex)
                         {
-                            Console.WriteLine("Element read error" + ex.Message);
+                            Console.WriteLine("18. Element read error" + ex.Message);
                             returnMessage = (int)ExitCode.UnknownError;
                         }
 
@@ -864,14 +905,11 @@ namespace ConvertIfc2Json
             }
             catch (Exception ioEx)
             {
-                Console.WriteLine(ioEx.Message);
+                Console.WriteLine("19. " + ioEx.Message);
                 returnMessage = (int)ExitCode.InvalidFile;
             }
 
-            // Environment.ExitCode = returnMessage;
-            // Console.WriteLine("Output elements : " + outputElements.Count);
-            //    Console.WriteLine(returnMessage);
-            Console.WriteLine(pathDest);
+            Console.WriteLine("20. " + pathDest);
             return returnMessage;
         }
 
@@ -908,7 +946,7 @@ namespace ConvertIfc2Json
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine("Matrix error : " + ex.Message);
+                Console.WriteLine("30. Get Matrix : " + ex.Message);
                 return null;
             }
         }
@@ -944,7 +982,7 @@ namespace ConvertIfc2Json
                         }
                         catch (System.Exception ex2)
                         {
-                            Console.WriteLine("Pset write error" + ex2.Message);
+                            Console.WriteLine("21. Pset write error" + ex2.Message);
                         }
 
                     }
@@ -981,7 +1019,7 @@ namespace ConvertIfc2Json
                         }
                         catch (System.Exception ex2)
                         {
-                            Console.WriteLine("Pset write error" + ex2.Message);
+                            // Console.WriteLine("22. Pset write error" + ex2.Message);
                         }
 
                     }
@@ -1020,7 +1058,7 @@ namespace ConvertIfc2Json
                         }
                         catch (System.Exception ex2)
                         {
-                            Console.WriteLine("Pset write error" + ex2.Message);
+                            Console.WriteLine("23. Pset write error" + ex2.Message);
                         }
                     }
                 }
@@ -1056,7 +1094,7 @@ namespace ConvertIfc2Json
                         }
                         catch (System.Exception ex2)
                         {
-                            Console.WriteLine("Pset write error" + ex2.Message);
+                            Console.WriteLine("24. Pset write error" + ex2.Message);
                         }
                     }
 
@@ -1094,7 +1132,7 @@ namespace ConvertIfc2Json
                         }
                         catch (System.Exception ex2)
                         {
-                            Console.WriteLine("Pset write error" + ex2.Message);
+                            Console.WriteLine("25. Pset write error (id: " + element.GlobalId + ") " + ex2.Message);
                         }
                     }
 
@@ -1109,7 +1147,8 @@ namespace ConvertIfc2Json
             Success = 0,
             InvalidFile = 1,
             InvalidFilename = 2,
-            UnknownError = 10
+            NodataIsAvailableForEncoding = 3,
+            UnknownError = 10,
         }
 
         internal class MyElement

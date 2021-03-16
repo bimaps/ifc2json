@@ -1019,6 +1019,7 @@ namespace ConvertIfc2Json
                         }
                         catch (System.Exception ex2)
                         {
+                            string errMessage = ex2.Message;
                             // Console.WriteLine("22. Pset write error" + ex2.Message);
                         }
 

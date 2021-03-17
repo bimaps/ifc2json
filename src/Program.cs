@@ -713,9 +713,9 @@ namespace ConvertIfc2Json
                                                                 newElementProd.boundary.properties = props;
                                                                 newElementProd.boundary.geometry = geom;
                                                             }
-                                                            List<IfcBuildingElement> builingElements = space.Extract<IfcBuildingElement>();
+                                                            List<IfcBuildingElementProxy> builingElements = space.Extract<IfcBuildingElementProxy>();
                                                             // IFC Elements
-                                                            foreach (IfcBuildingElement bElement in builingElements)
+                                                            foreach (IfcBuildingElementProxy bElement in builingElements)
                                                             {
                                                                 IfcRelContainedInSpatialStructure productIds = bElement.ContainedInStructure;
                                                                 foreach (IfcProduct pId in productIds.RelatedElements)
@@ -779,9 +779,9 @@ namespace ConvertIfc2Json
 
                                         // IFC Elements
 
-                                        List<IfcBuildingElement> elements = buildingStorey.Extract<IfcBuildingElement>();
+                                        List<IfcBuildingElementProxy> elements = buildingStorey.Extract<IfcBuildingElementProxy>();
 
-                                        foreach (IfcBuildingElement element in elements)
+                                        foreach (IfcBuildingElementProxy element in elements)
                                         {
                                             JsonIfcElement newElement = new JsonIfcElement();
                                             try
@@ -1067,7 +1067,7 @@ namespace ConvertIfc2Json
             }
 
         }
-        static void extractPset(ref JsonIfcElement newElement, IfcBuildingElement element)
+        static void extractPset(ref JsonIfcElement newElement, IfcBuildingElementProxy element)
         {
 
             if (element.IsDefinedBy != null && element.IsDefinedBy.Count > 0)

@@ -358,3 +358,6 @@ output.json
 linux/IfcConvert
 macos/IfcConvert
 win/IfcConvert.exe
+
+# Documentation
+docs

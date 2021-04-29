@@ -9,15 +9,8 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace ConvertIfc2Json
 {
-
     class Program
     {
-        // private const int ERROR_BAD_ARGUMENTS = 0xA0;
-        // private const int ERROR_ARITHMETIC_OVERFLOW = 0x216;
-        // private const int ERROR_INVALID_COMMAND_LINE = 0x667;
-        // private const int ERROR_BAD_ENVIRONMENT = 0xA;
-
-
         public static int Main(string[] args)
         {
 
@@ -28,7 +21,7 @@ namespace ConvertIfc2Json
             bool activeComptactJson = true;
             bool readVersion = false;
             bool activeFullJson = false;
-            double SCALE = 1; // 1
+            double SCALE = 1;
 
             try
             {
@@ -176,7 +169,7 @@ namespace ConvertIfc2Json
                     }
                     catch (System.Exception ex)
                     {
-                        
+
                         Console.WriteLine("31. Write file : " + ex.Message);
                         returnMessage = (int)ExitCode.InvalidFile;
                     }
@@ -260,8 +253,6 @@ namespace ConvertIfc2Json
                                         if (bPos.RefDirection != null) newBuildind.userData.refDirection = bPos.RefDirection.DirectionRatios[0] + "," + bPos.RefDirection.DirectionRatios[1] + "," + bPos.RefDirection.DirectionRatios[2];
                                         if (bPos.Axis != null) newBuildind.userData.axis = bPos.Axis.DirectionRatios[0] + "," + bPos.Axis.DirectionRatios[1] + "," + bPos.Axis.DirectionRatios[2];
 
-                                        // Add Site id reference
-                                        // if (newBuild ind.userData.pset.ContainsKey("siteId") != true) newBuildind.userData.pset.Add("siteId", site.GlobalId);
 
                                         // Extract Pset
                                         extractPset(ref newBuildind, building);
@@ -269,7 +260,8 @@ namespace ConvertIfc2Json
                                         // building Address
                                         try
                                         {
-                                            if (building.BuildingAddress != null){
+                                            if (building.BuildingAddress != null)
+                                            {
                                                 if (building.BuildingAddress.AddressLines.Count > 0)
                                                 {
                                                     for (int i = 0; i < building.BuildingAddress.AddressLines.Count; i++)
@@ -321,8 +313,6 @@ namespace ConvertIfc2Json
                                         if (bsPos.RefDirection != null) newBuildind.userData.refDirection = bsPos.RefDirection.DirectionRatios[0] + "," + bsPos.RefDirection.DirectionRatios[1] + "," + bsPos.RefDirection.DirectionRatios[2];
                                         if (bsPos.Axis != null) newBuildind.userData.axis = bsPos.Axis.DirectionRatios[0] + "," + bsPos.Axis.DirectionRatios[1] + "," + bsPos.Axis.DirectionRatios[2];
 
-                                        // if(Array.Exists(storeyElement.userData.buildingStorey, element => element.Equals(storeyElement.id)) == false){
-                                        // }
                                         outputElements.Add(storeyElement);
 
 
@@ -414,9 +404,6 @@ namespace ConvertIfc2Json
                                                                                 Point3D loc = new Point3D(pos.Location.Coordinates[0], pos.Location.Coordinates[1], pos.Location.Coordinates[2]);
                                                                                 height = (areaSolid.Depth / SCALE).ToString();
                                                                                 elevation = (buildingStorey.Elevation / SCALE).ToString();
-                                                                                //Matrix<double> mat4x4 = Matrix<double>.Build.Dense(4,4);
-                                                                                //Matrix<double> mat90 = Matrix3D.RotationAroundZAxis(MathNet.Spatial.Units.Angle.FromDegrees(90));
-                                                                                // mat4x4 = getMatrix(pos);
 
                                                                                 if (areaSolid.SweptArea.StepClassName == "IfcArbitraryClosedProfileDef")
                                                                                 { // Polyline
@@ -486,8 +473,6 @@ namespace ConvertIfc2Json
                                                                                     if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
                                                                                     if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
 
-                                                                                    // props.Add("StepClassName",areaSolid.SweptArea.StepClassName);
-
 
                                                                                 }
                                                                                 else if (areaSolid.SweptArea.StepClassName == "IfcRectangleProfileDef") // Rectangle
@@ -498,16 +483,12 @@ namespace ConvertIfc2Json
                                                                                     {
                                                                                         if (rectangleProfile[0].XDim > 0.0000001 && rectangleProfile[0].YDim > 0.0000001)
                                                                                         {
-                                                                                            //IList<IList<IList<double>>> coordinates
 
                                                                                             if (rectangleProfile[0].Position.Location.Coordinates.Count >= 2)
                                                                                             {
                                                                                                 try
                                                                                                 {
                                                                                                     Point3D lm = new Point3D(0, 0, 0);
-                                                                                                    // Point3D lm = new Point3D(loc.X,loc.Y,loc.Z);
-                                                                                                    // Matrix<double> m = Matrix<double>.Build.Dense(4, 1, new[] {lm.X, lm.Y, lm.Z, 1 });
-                                                                                                    // lm = lm.TransformBy(mat4x4);
                                                                                                     double XDim = rectangleProfile[0].XDim / 2;
                                                                                                     double YDim = rectangleProfile[0].YDim / 2;
 
@@ -542,8 +523,6 @@ namespace ConvertIfc2Json
                                                                                                     props.Add("location", pos.Location.Coordinates[0] / SCALE + "," + pos.Location.Coordinates[1] / SCALE + "," + pos.Location.Coordinates[2] / SCALE);
                                                                                                     if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
                                                                                                     if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
-
-                                                                                                    // props.Add("StepClassName",areaSolid.SweptArea.StepClassName);
 
                                                                                                 }
                                                                                                 catch (System.Exception exMatrixTransf)
@@ -590,7 +569,6 @@ namespace ConvertIfc2Json
                                                                                     }
                                                                                     else
                                                                                     {
-                                                                                        //IList<IList<IList<double>>> coordinates
                                                                                         List<IfcPolyline> poly = arbitraryProfileDefWithVoids.OuterCurve.Extract<IfcPolyline>();
 
                                                                                         foreach (IfcCartesianPoint pt in poly[0].Points)
@@ -602,8 +580,8 @@ namespace ConvertIfc2Json
                                                                                                 {
                                                                                                     IList<double> xy = new List<double>();
                                                                                                     Point3D p = new Point3D(pt.Coordinates[0], pt.Coordinates[1], 0);
-                                                                                                    xy.Add(p.X / SCALE); //+ loc.X);
-                                                                                                    xy.Add(p.Y / SCALE); // + loc.Y);
+                                                                                                    xy.Add(p.X / SCALE);
+                                                                                                    xy.Add(p.Y / SCALE);
                                                                                                     polyExt.Add(xy);
                                                                                                 }
                                                                                                 catch (System.Exception exTransf)
@@ -631,9 +609,6 @@ namespace ConvertIfc2Json
                                                                                 if (facetedBreps.Count > 0)
                                                                                 {
                                                                                     IfcFacetedBrep facetedBrep = facetedBreps[0];
-                                                                                    //IfcAxis2Placement3D pos = facetedBrep.Position;
-                                                                                    //Point3D loc = new Point3D(pos.Location.Coordinates[0], pos.Location.Coordinates[1], pos.Location.Coordinates[2]);
-                                                                                    //height = (facetedBrep.Depth / SCALE).ToString();
                                                                                     elevation = (buildingStorey.Elevation / SCALE).ToString();
                                                                                     if (facetedBrep.Outer.StepClassName == "IfcClosedShell")
                                                                                     {
@@ -667,9 +642,6 @@ namespace ConvertIfc2Json
 
                                                                                             }
 
-                                                                                            // props.Add("location", pos.Location.Coordinates[0] / SCALE + "," + pos.Location.Coordinates[1] / SCALE + "," + pos.Location.Coordinates[2] / SCALE);
-                                                                                            // if (pos.RefDirection != null) props.Add("refDirection", pos.RefDirection.DirectionRatios[0] + "," + pos.RefDirection.DirectionRatios[1] + "," + pos.RefDirection.DirectionRatios[2]);
-                                                                                            // if (pos.Axis != null) props.Add("axis", pos.Axis.DirectionRatios[0] + "," + pos.Axis.DirectionRatios[1] + "," + pos.Axis.DirectionRatios[2]);
 
                                                                                         }
 
@@ -764,7 +736,7 @@ namespace ConvertIfc2Json
                                             }
                                             catch (NotSupportedException exEncode)
                                             {
-                                                Console.WriteLine("28. Name read error (product counter: " + productCounter+ ") " + exEncode.Message); // returnMessage = (int)ExitCode.NodataIsAvailableForEncoding;
+                                                Console.WriteLine("28. Name read error (product counter: " + productCounter + ") " + exEncode.Message); // returnMessage = (int)ExitCode.NodataIsAvailableForEncoding;
                                             }
                                             catch (System.Exception ex)
                                             {
@@ -881,21 +853,6 @@ namespace ConvertIfc2Json
                         }
                     }
 
-                    // Test GeoJson
-                    // GeoFeatureCollection gj = new GeoFeatureCollection();
-                    // gj.features = new List<geoFeature>();
-                    // gj.type = "FeatureCollection";
-                    // foreach (JsonIfcElement item in outputElements)
-                    // {
-                    //     if (item.boundary != null){
-                    //         gj.features.Add(item.boundary);
-                    //     }
-
-                    // }
-                    // string geoJsonFormat = Newtonsoft.Json.JsonConvert.SerializeObject(gj, Newtonsoft.Json.Formatting.Indented,jsonSettings);
-                    // File.WriteAllText(pathDest.Replace(".json", ".geojson"),geoJsonFormat);
-
-
                 }
                 else
                 {
@@ -912,45 +869,6 @@ namespace ConvertIfc2Json
             Console.WriteLine("20. " + pathDest);
             return returnMessage;
         }
-
-        static Matrix<double> getMatrix(IfcAxis2Placement3D position)
-        {
-            try
-            {
-                Vector3D location = new Vector3D(position.Location.Coordinates[0], position.Location.Coordinates[1], position.Location.Coordinates[2]);
-
-                Vector3D vect1 = new Vector3D(position.RefDirection.DirectionRatios[0], position.RefDirection.DirectionRatios[1], position.RefDirection.DirectionRatios[2]);
-                Vector3D vect3 = new Vector3D(position.Axis.DirectionRatios[0], position.Axis.DirectionRatios[1], position.Axis.DirectionRatios[2]);
-                Vector3D vect2 = vect3.CrossProduct(vect1);
-
-                // Matrix<double> matrix = Matrix<double>.Build.Dense(4,4, new[] {
-                //     vect1.X, vect1.Y, vect1.Z, 0, 
-                //     vect2.X, vect2.Y, vect2.Z , 0, 
-                //     vect3.X, vect3.Y, vect3.Z, 0,
-                //     location.X, location.Y, location.Z, 1
-                // });
-                Matrix<double> matrix = Matrix<double>.Build.Dense(4, 4, new[] {
-                    vect1.X, vect2.X, vect3.X, location.X,
-                    vect1.Y, vect2.Y, vect3.Y, location.Y,
-                    vect1.Z, vect2.Z , vect3.Z, location.Z,
-                     0, 0, 0, 1
-                });
-                // Matrix<double> matrix = Matrix<double>.Build.Dense(4, 4, new[] {
-                //     0.0,0,0,0,
-                //     0,0,0,0,
-                //     0,0,0,0,
-                //     0,0,0,1
-                // });
-
-                return matrix;
-            }
-            catch (System.Exception ex)
-            {
-                Console.WriteLine("30. Get Matrix : " + ex.Message);
-                return null;
-            }
-        }
-
 
 
         static void extractPset(ref JsonIfcElement newElement, IfcSite element)
@@ -1232,51 +1150,7 @@ namespace ConvertIfc2Json
         }
 
 
-        // class Point2d
-        // {
-        //     public double X;
-        //     public double Y;
-
-        //     public Point2d(double x, double y)
-        //     {
-        //         X = x;
-        //         Y = y;
-        //     }
-        // }
-
-        // class Point3d
-        // {
-        //     public double X;
-        //     public double Y;
-        //     public double Z;
-
-        //     public Point3d(double x, double y, double z)
-        //     {
-        //         X = x;
-        //         Y = y;
-        //         Z = z;
-        //     }
-        // }
-
-
-
-
-
 
     }
 }
-// Console.Out.Write(db.JSON());
-// [
-//   {
-//     id: 'safsadfds',
-//     userData: {
-//       val: 'asfd',
-//       val2: 2424,
-//       val3: {
-//         comlex: 'string'
-//       }
-//     }
-//   }
-// ]
-
 

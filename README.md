@@ -32,10 +32,29 @@ If you don't specify an output name, the name of the Json result file will be "s
 `--full` : if you add this parameter all the IFC will be returned in Json format.
 `--version` : display version number
 
+## Code documentation
 
-## Code compilation
+Here is the code structure to extract the IFC elements according to the building hierarchy :
 
-### Compile
+```
+IfcProject (Project)
+ |
+ |-IfcSite (Site)
+   |
+   |-IfcBuilding (Building)
+     |
+     |-IfcBuildingStorey (Building level)
+       |
+       |-IfcSpace (Space / room)
+	     |
+	     |- IfcElement
+```
+
+
+
+## Compilation
+
+### Build multi-platform
 
 1. Install [.Net Core 3.1](https://dotnet.microsoft.com/download)
 2. Start `build.sh` (for MacOS + Linux)
@@ -69,7 +88,7 @@ Recommendation: use Visual Studio 2019+
 
 replace that :
 
-```C#
+```csharp
 #if (!NETSTANDARD2_0)
     string name = ((string)Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion", "RegisteredOrganization", "")).Replace("'", "");
     if (!string.IsNullOrEmpty(name) && string.Compare(name, "Microsoft", true) != 0 && string.Compare(name, "HP Inc.",true) != 0)
@@ -79,7 +98,7 @@ replace that :
 
 by this :
 
-```C#
+```csharp
 #if (!NETSTANDARD2_0)
     //string name = ((string)Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion", "RegisteredOrganization", "")).Replace("'", "");
     string name = null;
@@ -94,7 +113,7 @@ by this :
 
 5. Create a file at the root of the folder (update version number) : `AssemblyInfo.cs`
 
-```C#
+```csharp
 using System;
 using System.Reflection;
 

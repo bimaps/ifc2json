@@ -1022,7 +1022,7 @@ namespace ConvertIfc2Json
             }
 
         }
-
+        
         static void extractPset(ref JsonIfcElement newElement, IfcBuildingStorey element)
         {
 
@@ -1070,21 +1070,7 @@ namespace ConvertIfc2Json
             UnknownError = 10,
         }
 
-        internal class MyElement
-        {
-            internal string mMark = "", mDescription = "", mSection = "", mGrade = "";
-            internal double mLength = 0;
-            internal int mQuantity = 1;
-            internal MyElement(string mark, string description, string section, string grade, double length)
-            {
-                mMark = mark;
-                mDescription = description;
-                mSection = section;
-                mGrade = grade;
-                mLength = length;
-            }
-        }
-
+  
         internal class JsonIfcElement
         {
             public string id { get; set; }

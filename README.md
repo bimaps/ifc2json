@@ -109,7 +109,7 @@ by this :
 
 3. Change Framework : .NET Core 3.1
 
-4. Update Nuget package ``Newtonsoft.Json`
+4. Update Nuget package `Newtonsoft.Json`
 
 5. Create a file at the root of the folder (update version number) : `AssemblyInfo.cs`
 

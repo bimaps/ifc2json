@@ -5,6 +5,8 @@ using GeometryGym.Ifc;
 using MathNet.Spatial.Euclidean;
 using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
+using System.Threading.Tasks;
+using System.Linq;
 
 
 namespace ConvertIfc2Json
@@ -16,8 +18,8 @@ namespace ConvertIfc2Json
 
             int returnMessage = (int)ExitCode.Success;
             List<JsonIfcElement> outputElements = new List<JsonIfcElement>();
-            string pathSource = "";
-            string pathDest = "";
+            string pathSource = null;
+            string pathDest = null;
             bool activeComptactJson = true;
             bool readVersion = false;
             bool activeFullJson = false;
@@ -26,13 +28,14 @@ namespace ConvertIfc2Json
             try
             {
 
+                // param ???
                 foreach (string arg in args)
                 {
                     if (arg.ToLower().Trim() == "--version") readVersion = true;
                     if (arg.ToLower().Trim() == "--indented") activeComptactJson = false;
                     if (arg.ToLower().Trim() == "--full") activeFullJson = true;
-                    if (arg.Substring(0, 2) != "--" && pathSource != "" && pathDest == "") pathDest = arg;
-                    if (arg.Substring(0, 2) != "--" && pathSource == "") pathSource = arg;
+                    if (arg.Substring(0, 2) != "--" && !string.IsNullOrEmpty(pathSource) && string.IsNullOrEmpty(pathDest) ) pathDest = arg;
+                    if (arg.Substring(0, 2) != "--" && string.IsNullOrEmpty(pathSource)) pathSource = arg;
 
                 }
 
@@ -50,7 +53,7 @@ namespace ConvertIfc2Json
                     if (pathDest == "") pathDest = pathSource + ".json";
                     DatabaseIfc db = new DatabaseIfc();
                     IfcProject project;
-                    String projectId = "";
+                    string projectId = string.Empty;
                     List<IfcSite> sites = new List<IfcSite>();
                     List<IfcBuilding> buildings = new List<IfcBuilding>();
 
@@ -690,21 +693,36 @@ namespace ConvertIfc2Json
                                                             foreach (IfcBuildingElementProxy bElement in builingElements)
                                                             {
                                                                 IfcRelContainedInSpatialStructure productIds = bElement.ContainedInStructure;
-                                                                foreach (IfcProduct pId in productIds.RelatedElements)
+                                                                
+                                                                try
                                                                 {
-                                                                    try
-                                                                    {
-                                                                        if (pId.GlobalId == product.GlobalId)
-                                                                        {
-                                                                            newElementProd.userData.spaceId = space.GlobalId;
-                                                                        }
-                                                                    }
-                                                                    catch (System.Exception ex)
-                                                                    {
-                                                                        Console.WriteLine("13. Element read error" + ex.Message);
-                                                                        returnMessage = (int)ExitCode.UnknownError;
+                                                                    var pId = productIds.RelatedElements.LastOrDefault(pId => pId.GlobalId == product.GlobalId);
+                                                                    if (pId != null) {
+                                                                        newElementProd.userData.spaceId = space.GlobalId;
                                                                     }
                                                                 }
+                                                                catch (System.Exception ex)
+                                                                {
+                                                                    Console.WriteLine("13. Element read error" + ex.Message);
+                                                                    // returnMessage = (int)ExitCode.UnknownError;
+                                                                }
+
+                                                                
+                                                                // foreach (IfcProduct pId in productIds.RelatedElements)
+                                                                // {
+                                                                //     try
+                                                                //     {
+                                                                //         if (pId.GlobalId == product.GlobalId)
+                                                                //         {
+                                                                //             newElementProd.userData.spaceId = space.GlobalId;
+                                                                //         }
+                                                                //     }
+                                                                //     catch (System.Exception ex)
+                                                                //     {
+                                                                //         Console.WriteLine("13. Element read error" + ex.Message);
+                                                                //         returnMessage = (int)ExitCode.UnknownError;
+                                                                //     }
+                                                                // }
                                                             }
 
 
@@ -755,11 +773,11 @@ namespace ConvertIfc2Json
 
                                         foreach (IfcBuildingElementProxy element in elements)
                                         {
-                                            JsonIfcElement newElement = new JsonIfcElement();
                                             try
                                             {
                                                 if (element.GlobalId != null && productsIds.Contains(element.GlobalId) == false)
                                                 {
+                                                    JsonIfcElement newElement = new JsonIfcElement();
                                                     newElement.id = element.GlobalId;
                                                     newElement.userData = new JsonIfcUserData();
                                                     newElement.userData.buildingStorey = new string[] { };
@@ -773,10 +791,9 @@ namespace ConvertIfc2Json
                                                     if (projectId != null) newElement.userData.projectId = projectId;
                                                     if (site.GlobalId != null) newElement.userData.siteId = site.GlobalId;
                                                     if (building.GlobalId != null) newElement.userData.buildingId = building.GlobalId;
-                                                    List<string> sIds = new List<string>();
-                                                    sIds.Add(storeyElement.id);
-                                                    newElement.userData.buildingStorey = sIds.ToArray();
-
+                                                    // List<string> sIds = new List<string>();
+                                                    // sIds.Add(storeyElement.id);
+                                                    newElement.userData.buildingStorey = new []{storeyElement.id}; //  sIds.ToArray();
 
                                                     // Extract pset
                                                     extractPset(ref newElement, element);

@@ -9,7 +9,7 @@ permalink: /api/ifc2json
 
 Convert IFC 2 Json is a .net Core Library based on [GeometryGymIFC](https://github.com/GeometryGym/GeometryGymIFC).
 
-Requirements: The [.Net Core 3.1](https://dotnet.microsoft.com/download) must be installed.
+Requirements: The [.NET 6.0](https://dotnet.microsoft.com/download) must be installed.
 
 ### Quickstart
 
@@ -46,8 +46,8 @@ IfcProject (Project)
      |-IfcBuildingStorey (Building level)
        |
        |-IfcSpace (Space / room)
-	     |
-	     |- IfcElement
+	       |
+	       |- IfcElement
 ```
 
 
@@ -56,7 +56,7 @@ IfcProject (Project)
 
 ### Build multi-platform
 
-1. Install [.Net Core 3.1](https://dotnet.microsoft.com/download)
+1. Install [.NET 6.0](https://dotnet.microsoft.com/download)
 2. Start `build.sh` (for MacOS + Linux)
 
 
@@ -73,7 +73,7 @@ The packages are installed via the Nuget package manager:
 
 The library is the most reliable in the IFC transformation world (also used in Revit, Rhino, etc.)
 
-We compile the library for the [.NET core](https://docs.microsoft.com/en-us/dotnet/core) environment. Originally, this is only for the .NET (Windows) environment.
+We compile the library for the [.NET 6.0](https://docs.microsoft.com/en-us/dotnet/core) environment. Originally, this is only for the .NET (Windows) environment.
 
 Source code : [github.com/GeometryGym/GeometryGymIFC](https://github.com/GeometryGym/GeometryGymIFC)
 
@@ -107,7 +107,7 @@ by this :
 #endif
 ```
 
-3. Change Framework : .NET Core 3.1
+3. Change Framework : .NET 6.0
 
 4. Update Nuget package `Newtonsoft.Json`
 
@@ -131,7 +131,7 @@ using System.Reflection;
 
 
 7. Copie file in the Ifc2json folder :
-    - From `Core\bin\Release\netcoreapp3.1\GeometryGymIFCcore.dll`
+    - From `bin\Release\net6.0\GeometryGymIFCcore.dll`
     - To `linux` + `macos` + `win`
 
 
